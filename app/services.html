@@ -1,9 +1,11 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Nard's Vehicle Maintenance Service - Our Services</title>
+    <link rel="stylesheet" href="booking.html">
     <style>
         * {
             padding: 0px;
@@ -301,6 +303,24 @@
             width: 100%;
             height: 100%;
             object-fit: cover;
+        }
+
+        .service-image .placeholder {
+            display: none;
+        }
+
+        .service-image img[src="service1.png"],
+        .service-image img[src="service2.png"],
+        .service-image img[src="service3.png"],
+        .service-image img[src="service4.png"],
+        .service-image img[src="service5.png"],
+        .service-image img[src="service6.png"] {
+            display: block;
+        }
+
+        .service-image img:not([src]) + .placeholder,
+        .service-image img[src=""]:not([src*="."]) + .placeholder {
+            display: block;
         }
 
         .service-content {
@@ -624,8 +644,8 @@
                 <!-- Transmission Service -->
                 <div class="service-card">
                     <div class="service-image">
-                        <img src="service1.png" alt="Transmission Service" style="display: none;">
-                        <span>Transmission Service Image</span>
+                        <img src="service1.png" alt="Transmission Service">
+                        <span class="placeholder">Transmission Service Image</span>
                     </div>
                     <div class="service-content">
                         <h3>Transmission Service</h3>
@@ -637,8 +657,8 @@
                 <!-- Clutch Repairs -->
                 <div class="service-card">
                     <div class="service-image">
-                        <img src="service2.png" alt="Clutch Repairs" style="display: none;">
-                        <span>Clutch Repairs Image</span>
+                        <img src="service2.png" alt="Clutch Repairs">
+                        <span class="placeholder">Clutch Repairs Image</span>
                     </div>
                     <div class="service-content">
                         <h3>Clutch Repairs</h3>
@@ -650,8 +670,8 @@
                 <!-- Air System Repairs -->
                 <div class="service-card">
                     <div class="service-image">
-                        <img src="service3.png" alt="Air System Repairs" style="display: none;">
-                        <span>Air System Repairs Image</span>
+                        <img src="service3.png" alt="Air System Repairs">
+                        <span class="placeholder">Air System Repairs Image</span>
                     </div>
                     <div class="service-content">
                         <h3>Air System Repairs</h3>
@@ -663,8 +683,8 @@
                 <!-- Engine Repairs & Maintenance -->
                 <div class="service-card">
                     <div class="service-image">
-                        <img src="service4.png" alt="Engine Repairs & Maintenance" style="display: none;">
-                        <span>Engine Repairs Image</span>
+                        <img src="service4.png" alt="Engine Repairs & Maintenance">
+                        <span class="placeholder">Engine Repairs Image</span>
                     </div>
                     <div class="service-content">
                         <h3>Engine Repairs & Maintenance</h3>
@@ -676,8 +696,8 @@
                 <!-- Fuel System Services -->
                 <div class="service-card">
                     <div class="service-image">
-                        <img src="service5.png" alt="Fuel System Services" style="display: none;">
-                        <span>Fuel System Services Image</span>
+                        <img src="service5.png" alt="Fuel System Services">
+                        <span class="placeholder">Fuel System Services Image</span>
                     </div>
                     <div class="service-content">
                         <h3>Fuel System Services</h3>
@@ -689,8 +709,8 @@
                 <!-- Underchassis Services -->
                 <div class="service-card">
                     <div class="service-image">
-                        <img src="service6.png" alt="Underchassis Services" style="display: none;">
-                        <span>Underchassis Services Image</span>
+                        <img src="service6.png" alt="Underchassis Services">
+                        <span class="placeholder">Underchassis Services Image</span>
                     </div>
                     <div class="service-content">
                         <h3>Underchassis Services</h3>
@@ -709,7 +729,7 @@
             <p>Ready to get your vehicle checked, serviced, or rescued? Choose the option that fits your needs best and we'll handle the rest.</p>
             <div class="booking-buttons">
                 <button class="booking-btn">Home Service Booking</button>
-                <button class="booking-btn">Roadside Rescue</button>
+                <button class="booking-btn" onclick="RoadsideRescueModal.open()">Roadside Rescue</button>
             </div>
         </div>
     </section>
@@ -785,6 +805,25 @@
                     });
                 }
             });
+
+            // Handle image loading errors
+            const images = document.querySelectorAll('.service-image img');
+            images.forEach(img => {
+                img.onerror = function() {
+                    this.style.display = 'none';
+                    const placeholder = this.nextElementSibling;
+                    if (placeholder && placeholder.classList.contains('placeholder')) {
+                        placeholder.style.display = 'block';
+                    }
+                };
+                
+                img.onload = function() {
+                    const placeholder = this.nextElementSibling;
+                    if (placeholder && placeholder.classList.contains('placeholder')) {
+                        placeholder.style.display = 'none';
+                    }
+                };
+            });
         });
 
         // Existing functionality
@@ -803,9 +842,7 @@
         });
 
         document.querySelector('.book-service-btn').addEventListener('click', function() {
-            document.querySelector('.book-service-section').scrollIntoView({ 
-                behavior: 'smooth' 
-            });
+            NardsModal.open();
         });
 
         // Dropdown link functionality
@@ -817,5 +854,471 @@
             });
         });
     </script>
+    <script src="booking.html"></script>
+
+    <!-- Add this HTML right before the closing </body> tag in services.html -->
+
+<!-- Modal -->
+<div class="modal-overlay" id="serviceModal">
+    <div class="modal-container">
+        <div class="modal-header">
+            <h2 class="modal-title">Nard's Service</h2>
+            <p class="modal-subtitle">Select all services that apply</p>
+            <button class="close-btn" onclick="NardsModal.close()">×</button>
+            
+            <div class="progress-bar">
+                <div class="progress-fill"></div>
+            </div>
+        </div>
+
+        <div class="modal-content">
+            <div class="section-title">Not sure what's wrong?</div>
+            
+            <div class="quick-option" onclick="NardsModal.toggleOption(this)">
+                <div class="option-icon">📝</div>
+                <div class="option-content">
+                    <div class="option-title">I'll describe what I need</div>
+                    <div class="option-description">Please note all concerns</div>
+                </div>
+                <div class="checkbox"></div>
+            </div>
+
+            <div class="section-title" style="margin-top: 24px;">Instant Booking</div>
+
+            <div class="quick-option" onclick="NardsModal.toggleOption(this)">
+                <div class="option-icon">🔧</div>
+                <div class="option-content">
+                    <div class="option-title">Engine Service</div>
+                    <div class="option-description">Engine tune-up, diagnostics, or repair needed</div>
+                </div>
+                <div class="checkbox"></div>
+            </div>
+
+            <div class="quick-option" onclick="NardsModal.toggleOption(this)">
+                <div class="option-icon">⚙️</div>
+                <div class="option-content">
+                    <div class="option-title">Transmission / Clutch Service</div>
+                    <div class="option-description">Issues with shifting or clutch</div>
+                </div>
+                <div class="checkbox"></div>
+            </div>
+
+            <div class="quick-option" onclick="NardsModal.toggleOption(this)">
+                <div class="option-icon">🚗</div>
+                <div class="option-content">
+                    <div class="option-title">Underchassis Repair</div>
+                    <div class="option-description">Suspension, steering, or underbody concerns</div>
+                </div>
+                <div class="checkbox"></div>
+            </div>
+
+            <div class="quick-option" onclick="NardsModal.toggleOption(this)">
+                <div class="option-icon">❄️</div>
+                <div class="option-content">
+                    <div class="option-title">Air System Service</div>
+                    <div class="option-description">A/C or ventilation issue</div>
+                </div>
+                <div class="checkbox"></div>
+            </div>
+
+            <div class="quick-option" onclick="NardsModal.toggleOption(this)">
+                <div class="option-icon">⛽</div>
+                <div class="option-content">
+                    <div class="option-title">Fuel System / Injection Service</div>
+                    <div class="option-description">Injection pump issues or fuel leak</div>
+                </div>
+                <div class="checkbox"></div>
+            </div>
+
+            <div class="quick-option" onclick="NardsModal.toggleOption(this)">
+                <div class="option-icon">🛒</div>
+                <div class="option-content">
+                    <div class="option-title">Parts Replacement & Installation</div>
+                    <div class="option-description">Genuine parts with warranty</div>
+                </div>
+                <div class="checkbox"></div>
+            </div>
+
+            <div class="quick-option" onclick="NardsModal.toggleOption(this)">
+                <div class="option-icon">🔒</div>
+                <div class="option-content">
+                    <div class="option-title">Periodic & Preventive Maintenance</div>
+                    <div class="option-description">Regular check-up and tune-up</div>
+                </div>
+                <div class="checkbox"></div>
+            </div>
+
+            <div class="quick-option" onclick="NardsModal.toggleOption(this)">
+                <div class="option-icon">🔍</div>
+                <div class="option-content">
+                    <div class="option-title">Used Vehicle Inspection</div>
+                    <div class="option-description">Before buying or selling</div>
+                </div>
+                <div class="checkbox"></div>
+            </div>
+
+            <div class="quick-option" onclick="NardsModal.toggleOption(this)">
+                <div class="option-icon">❓</div>
+                <div class="option-content">
+                    <div class="option-title">Other Concerns</div>
+                    <div class="option-description">Describe your issue</div>
+                </div>
+                <div class="checkbox"></div>
+            </div>
+        </div>
+
+        <div class="modal-footer">
+            <button class="btn btn-secondary" onclick="NardsModal.addNote()">Add note</button>
+            <button class="btn btn-primary" onclick="NardsModal.proceedBooking()">Next</button>
+        </div>
+    </div>
+</div>
+
+<!-- Add this CSS for the modal -->
+<style>
+/* Modal Overlay */
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.3s ease;
+}
+
+.modal-overlay.active {
+    opacity: 1;
+    visibility: visible;
+}
+
+/* Modal Container */
+.modal-container {
+    background: white;
+    border-radius: 20px;
+    width: 90%;
+    max-width: 480px;
+    max-height: 90vh;
+    overflow: hidden;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+    transform: scale(0.9) translateY(20px);
+    transition: all 0.3s ease;
+}
+
+.modal-overlay.active .modal-container {
+    transform: scale(1) translateY(0);
+}
+
+/* Modal Header */
+.modal-header {
+    padding: 24px 24px 0;
+    position: relative;
+}
+
+.modal-title {
+    font-size: 24px;
+    font-weight: 700;
+    color: #1a1a1a;
+    margin-bottom: 8px;
+}
+
+.modal-subtitle {
+    font-size: 14px;
+    color: #666;
+    margin-bottom: 20px;
+}
+
+.close-btn {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    background: none;
+    border: none;
+    font-size: 24px;
+    color: #666;
+    cursor: pointer;
+    width: 32px;
+    height: 32px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    transition: all 0.2s ease;
+}
+
+.close-btn:hover {
+    background: #f0f0f0;
+    color: #333;
+}
+
+/* Progress Bar */
+.progress-bar {
+    height: 3px;
+    background: #e0e0e0;
+    border-radius: 2px;
+    overflow: hidden;
+    margin-bottom: 24px;
+}
+
+.progress-fill {
+    height: 100%;
+    background: linear-gradient(90deg, #4CAF50, #45a049);
+    width: 0%;
+    transition: width 0.3s ease;
+}
+
+/* Modal Content */
+.modal-content {
+    padding: 0 24px;
+    max-height: 60vh;
+    overflow-y: auto;
+}
+
+.section-title {
+    font-size: 16px;
+    font-weight: 600;
+    color: #333;
+    margin-bottom: 16px;
+}
+
+.quick-option {
+    display: flex;
+    align-items: center;
+    padding: 12px 16px;
+    margin-bottom: 8px;
+    background: #fff;
+    border: 1px solid #e0e0e0;
+    border-radius: 12px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    gap: 12px;
+}
+
+.quick-option:hover {
+    background: #f8f9fa;
+    border-color: #c0c0c0;
+}
+
+.quick-option.selected {
+    background: #f0f8ff;
+    border-color: #4CAF50;
+    box-shadow: 0 0 0 2px rgba(76, 175, 80, 0.1);
+}
+
+.option-icon {
+    width: 32px;
+    height: 32px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 18px;
+    border-radius: 8px;
+    flex-shrink: 0;
+}
+
+.option-content {
+    flex: 1;
+}
+
+.option-title {
+    font-size: 15px;
+    font-weight: 600;
+    color: #1a1a1a;
+    margin-bottom: 2px;
+}
+
+.option-description {
+    font-size: 13px;
+    color: #666;
+    line-height: 1.3;
+}
+
+.checkbox {
+    width: 20px;
+    height: 20px;
+    border: 2px solid #ddd;
+    border-radius: 4px;
+    margin-left: auto;
+    position: relative;
+    transition: all 0.2s ease;
+}
+
+.quick-option.selected .checkbox {
+    background: #4CAF50;
+    border-color: #4CAF50;
+}
+
+.quick-option.selected .checkbox::after {
+    content: '✓';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: white;
+    font-size: 12px;
+    font-weight: bold;
+}
+
+/* Modal Footer */
+.modal-footer {
+    padding: 20px 24px 24px;
+    display: flex;
+    gap: 12px;
+}
+
+.btn {
+    flex: 1;
+    padding: 14px 20px;
+    border: none;
+    border-radius: 10px;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.btn-secondary {
+    background: #f0f0f0;
+    color: #666;
+}
+
+.btn-secondary:hover {
+    background: #e0e0e0;
+}
+
+.btn-primary {
+    background: linear-gradient(135deg, #FFF200 0%, #FFD700 100%);
+    color: #333;
+    box-shadow: 0 4px 12px rgba(255, 215, 0, 0.3);
+}
+
+.btn-primary:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 6px 16px rgba(255, 215, 0, 0.4);
+}
+
+/* Responsive */
+@media (max-width: 480px) {
+    .modal-container {
+        width: 95%;
+        margin: 10px;
+    }
+    
+    .modal-header {
+        padding: 20px 20px 0;
+    }
+    
+    .modal-content {
+        padding: 0 20px;
+    }
+    
+    .modal-footer {
+        padding: 20px;
+    }
+}
+</style>
+
+<!-- Add this JavaScript for the modal functionality -->
+<script>
+// Nard's Modal Component
+const NardsModal = {
+    selectedServices: [],
+    
+    open() {
+        document.getElementById('serviceModal').classList.add('active');
+        document.body.style.overflow = 'hidden';
+    },
+
+    close() {
+        document.getElementById('serviceModal').classList.remove('active');
+        document.body.style.overflow = 'auto';
+    },
+
+    toggleOption(element) {
+        const isSelected = element.classList.contains('selected');
+        const optionTitle = element.querySelector('.option-title').textContent;
+        
+        if (isSelected) {
+            element.classList.remove('selected');
+            this.selectedServices = this.selectedServices.filter(service => service !== optionTitle);
+        } else {
+            element.classList.add('selected');
+            this.selectedServices.push(optionTitle);
+        }
+        
+        this.updateProgress();
+    },
+
+    updateProgress() {
+        const progressFill = document.querySelector('.progress-fill');
+        const percentage = Math.min((this.selectedServices.length / 10) * 100, 100);
+        progressFill.style.width = percentage + '%';
+    },
+
+    addNote() {
+        const event = new CustomEvent('addNoteRequested', {
+            detail: {
+                selectedServices: [...this.selectedServices]
+            }
+        });
+        document.dispatchEvent(event);
+    },
+
+    proceedBooking() {
+        if (this.selectedServices.length === 0) {
+            alert('Please select at least one service.');
+            return;
+        }
+        
+        const event = new CustomEvent('servicesSelected', {
+            detail: {
+                services: [...this.selectedServices],
+                timestamp: new Date().toISOString()
+            }
+        });
+        document.dispatchEvent(event);
+        
+        this.close();
+    },
+
+    reset() {
+        this.selectedServices = [];
+        document.querySelectorAll('.quick-option.selected').forEach(option => {
+            option.classList.remove('selected');
+        });
+        this.updateProgress();
+    }
+};
+
+// Event listeners for modal
+document.getElementById('serviceModal').addEventListener('click', function(e) {
+    if (e.target === this) {
+        NardsModal.close();
+    }
+});
+
+document.addEventListener('keydown', function(e) {
+    if (e.key === 'Escape') {
+        NardsModal.close();
+    }
+});
+
+// Example event listeners for integration
+document.addEventListener('servicesSelected', function(e) {
+    console.log('Services selected:', e.detail);
+    alert('Services selected: ' + e.detail.services.join(', '));
+});
+
+document.addEventListener('addNoteRequested', function(e) {
+    console.log('Add note requested for services:', e.detail);
+    alert('Add note functionality will be available soon!');
+});
+</script>
 </body>
 </html>
