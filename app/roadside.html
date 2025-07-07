@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -16,6 +15,24 @@
             font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
             background-color: #f5f5f5;
             padding: 20px;
+        }
+
+        .demo-button {
+            background: #4CAF50;
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            border-radius: 8px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            margin: 20px;
+        }
+
+        .demo-button:hover {
+            background: #45a049;
+            transform: translateY(-1px);
         }
 
         /* Modal Overlay */
@@ -276,6 +293,35 @@
             transform: none;
         }
 
+        /* Other input field - hidden by default */
+        .other-input {
+            display: none;
+            width: 100%;
+            padding: 12px 16px;
+            border: 1px solid #e0e0e0;
+            border-radius: 8px;
+            font-size: 14px;
+            color: #333;
+            background: white;
+            margin-top: 8px;
+            transition: border-color 0.2s ease;
+        }
+
+        .other-input:focus {
+            outline: none;
+            border-color: #f1c40f;
+            box-shadow: 0 0 0 2px rgba(241, 196, 15, 0.1);
+        }
+
+        .other-input::placeholder {
+            color: #999;
+        }
+
+        /* Error state */
+        .error {
+            border-color: #e74c3c !important;
+        }
+
         /* Responsive */
         @media (max-width: 480px) {
             .modal-container {
@@ -300,36 +346,10 @@
                 gap: 8px;
             }
         }
-
-
-
-        /* Other input field - hidden by default */
-        .other-input {
-            display: none;
-            width: 100%;
-            padding: 12px 16px;
-            border: 1px solid #e0e0e0;
-            border-radius: 8px;
-            font-size: 14px;
-            color: #333;
-            background: white;
-            margin-top: 8px;
-            transition: border-color 0.2s ease;
-        }
-
-        .other-input:focus {
-            outline: none;
-            border-color: #f1c40f;
-            box-shadow: 0 0 0 2px rgba(241, 196, 15, 0.1);
-        }
-
-        .other-input::placeholder {
-            color: #999;
-        }
     </style>
 </head>
 <body>
-
+    <button class="demo-button" onclick="RoadsideRescueModal.open()">Open Roadside Rescue Modal</button>
 
     <!-- Roadside Rescue Modal -->
     <div class="modal-overlay" id="roadsideRescueModal">
@@ -345,17 +365,17 @@
                 <form id="roadsideRescueForm">
                     <div class="form-group">
                         <label class="form-label">Name <span class="required">*</span></label>
-                        <input type="text" class="form-input" placeholder="Enter your full name" required>
+                        <input type="text" name="name" class="form-input" placeholder="Enter your full name" required>
                     </div>
 
                     <div class="form-group">
                         <label class="form-label">📍 Location <span class="required">*</span></label>
-                        <input type="text" class="form-input" placeholder="Enter your exact location" required>
+                        <input type="text" name="location" class="form-input" placeholder="Enter your exact location" required>
                     </div>
 
                     <div class="form-group">
                         <label class="form-label">📞 Contact Number <span class="required">*</span></label>
-                        <input type="tel" class="form-input" placeholder="Enter your number" required>
+                        <input type="tel" name="phone" class="form-input" placeholder="Enter your phone number" required>
                     </div>
 
                     <div class="form-group">
@@ -363,12 +383,12 @@
                         <div class="vehicle-details">
                             <div class="vehicle-row">
                                 <div class="vehicle-col">
-                                    <label class="vehicle-label">Car Model</label>
-                                    <input type="text" class="vehicle-input" placeholder="plate number">
+                                    <label class="vehicle-label">Car Make/Model</label>
+                                    <input type="text" name="carModel" class="vehicle-input" placeholder="e.g., Toyota Camry" required>
                                 </div>
                                 <div class="vehicle-col">
-                                    <label class="vehicle-label">Car Model</label>
-                                    <input type="text" class="vehicle-input" placeholder="plate number">
+                                    <label class="vehicle-label">Plate Number</label>
+                                    <input type="text" name="plateNumber" class="vehicle-input" placeholder="e.g., ABC-123" required>
                                 </div>
                             </div>
                         </div>
@@ -381,6 +401,9 @@
                                 Flat tire
                             </div>
                             <div class="problem-option" onclick="RoadsideRescueModal.selectProblem(this)">
+                                Battery dead
+                            </div>
+                            <div class="problem-option" onclick="RoadsideRescueModal.selectProblem(this)">
                                 Overheating
                             </div>
                             <div class="problem-option" onclick="RoadsideRescueModal.selectProblem(this)">
@@ -389,11 +412,14 @@
                             <div class="problem-option" onclick="RoadsideRescueModal.selectProblem(this)">
                                 I see smoke
                             </div>
+                            <div class="problem-option" onclick="RoadsideRescueModal.selectProblem(this)">
+                                Won't start
+                            </div>
                             <div class="problem-option" onclick="RoadsideRescueModal.selectProblem(this)" data-type="other">
                                 Other
                             </div>
                         </div>
-                        <input type="text" class="other-input" id="otherProblemInput" placeholder="Please specify the problem...">
+                        <input type="text" name="otherProblem" class="other-input" id="otherProblemInput" placeholder="Please specify the problem...">
                     </div>
                 </form>
             </div>
@@ -442,63 +468,105 @@
                 }
             },
 
-            submitForm() {
+            validateForm() {
                 const form = document.getElementById('roadsideRescueForm');
-                const formData = new FormData(form);
-                
-                // Basic validation
                 const inputs = form.querySelectorAll('input[required]');
                 let isValid = true;
                 
+                // Clear previous error states
+                inputs.forEach(input => {
+                    input.classList.remove('error');
+                });
+                
+                // Check required fields
                 inputs.forEach(input => {
                     if (!input.value.trim()) {
                         isValid = false;
-                        input.style.borderColor = '#e74c3c';
-                    } else {
-                        input.style.borderColor = '#e0e0e0';
+                        input.classList.add('error');
                     }
                 });
                 
+                // Check if problem is selected
                 if (!this.selectedProblem) {
+                    isValid = false;
                     alert('Please select a type of problem.');
-                    return;
+                    return false;
                 }
                 
                 // Check if "Other" is selected and input is provided
                 const otherInput = document.getElementById('otherProblemInput');
                 if (this.selectedProblem === 'Other' && !otherInput.value.trim()) {
+                    isValid = false;
+                    otherInput.classList.add('error');
                     alert('Please specify the problem details.');
-                    otherInput.style.borderColor = '#e74c3c';
-                    return;
+                    return false;
                 }
                 
                 if (!isValid) {
                     alert('Please fill in all required fields.');
-                    return;
+                    return false;
                 }
                 
-                // Get the final problem description
-                const finalProblem = this.selectedProblem === 'Other' 
+                return true;
+            },
+
+            collectFormData() {
+                const form = document.getElementById('roadsideRescueForm');
+                const formData = new FormData(form);
+                
+                const data = {};
+                for (let [key, value] of formData.entries()) {
+                    data[key] = value;
+                }
+                
+                // Add problem type
+                const otherInput = document.getElementById('otherProblemInput');
+                data.problemType = this.selectedProblem === 'Other' 
                     ? otherInput.value.trim() 
                     : this.selectedProblem;
                 
+                // Add timestamp
+                data.timestamp = new Date().toISOString();
+                
+                return data;
+            },
+
+            submitForm() {
+                if (!this.validateForm()) {
+                    return;
+                }
+                
+                const formData = this.collectFormData();
+                
                 // Process form submission
-                console.log('Roadside rescue request submitted:', {
-                    problem: finalProblem,
-                    timestamp: new Date().toISOString()
-                });
+                console.log('Roadside rescue request submitted:', formData);
+                
+                // Here you would typically send the data to your server
+                // Example: fetch('/api/roadside-rescue', { method: 'POST', body: JSON.stringify(formData) })
                 
                 alert('Your roadside rescue request has been submitted! We will contact you shortly.');
                 this.close();
             },
 
             reset() {
-                document.getElementById('roadsideRescueForm').reset();
+                const form = document.getElementById('roadsideRescueForm');
+                form.reset();
+                
+                // Clear selected problem options
                 document.querySelectorAll('.problem-option.selected').forEach(option => {
                     option.classList.remove('selected');
                 });
-                document.getElementById('otherProblemInput').style.display = 'none';
-                document.getElementById('otherProblemInput').value = '';
+                
+                // Hide other input
+                const otherInput = document.getElementById('otherProblemInput');
+                otherInput.style.display = 'none';
+                otherInput.value = '';
+                
+                // Clear error states
+                document.querySelectorAll('.error').forEach(element => {
+                    element.classList.remove('error');
+                });
+                
                 this.selectedProblem = null;
             }
         };
@@ -511,8 +579,15 @@
         });
 
         document.addEventListener('keydown', function(e) {
-            if (e.key === 'Escape') {
+            if (e.key === 'Escape' && document.getElementById('roadsideRescueModal').classList.contains('active')) {
                 RoadsideRescueModal.close();
+            }
+        });
+
+        // Remove error styling when user starts typing
+        document.addEventListener('input', function(e) {
+            if (e.target.classList.contains('error')) {
+                e.target.classList.remove('error');
             }
         });
     </script>
