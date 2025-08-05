@@ -1,0 +1,595 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Roadside Rescue Modal</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            background-color: #f5f5f5;
+            padding: 20px;
+        }
+
+        .demo-button {
+            background: #4CAF50;
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            border-radius: 8px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            margin: 20px;
+        }
+
+        .demo-button:hover {
+            background: #45a049;
+            transform: translateY(-1px);
+        }
+
+        /* Modal Overlay */
+        .modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+        }
+
+        .modal-overlay.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        /* Modal Container */
+        .modal-container {
+            background: white;
+            border-radius: 20px;
+            width: 90%;
+            max-width: 480px;
+            max-height: 90vh;
+            overflow: hidden;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+            transform: scale(0.9) translateY(20px);
+            transition: all 0.3s ease;
+        }
+
+        .modal-overlay.active .modal-container {
+            transform: scale(1) translateY(0);
+        }
+
+        /* Modal Header */
+        .modal-header {
+            padding: 20px 24px;
+            position: relative;
+            border-bottom: 1px solid #e0e0e0;
+        }
+
+        .modal-title {
+            font-size: 20px;
+            font-weight: 600;
+            color: #1a1a1a;
+            margin-bottom: 8px;
+        }
+
+        .modal-subtitle {
+            font-size: 14px;
+            color: #666;
+            line-height: 1.4;
+        }
+
+        .close-btn {
+            position: absolute;
+            top: 20px;
+            right: 24px;
+            background: none;
+            border: none;
+            font-size: 24px;
+            color: #666;
+            cursor: pointer;
+            width: 32px;
+            height: 32px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            transition: all 0.2s ease;
+        }
+
+        .close-btn:hover {
+            background: #f0f0f0;
+            color: #333;
+        }
+
+        .back-btn {
+            position: absolute;
+            top: 20px;
+            left: 24px;
+            background: none;
+            border: none;
+            font-size: 20px;
+            color: #666;
+            cursor: pointer;
+            width: 32px;
+            height: 32px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            transition: all 0.2s ease;
+        }
+
+        .back-btn:hover {
+            background: #f0f0f0;
+            color: #333;
+        }
+
+        /* Modal Content */
+        .modal-content {
+            padding: 24px;
+            max-height: 60vh;
+            overflow-y: auto;
+        }
+
+        .form-group {
+            margin-bottom: 24px;
+        }
+
+        .form-label {
+            display: block;
+            font-size: 14px;
+            font-weight: 500;
+            color: #333;
+            margin-bottom: 8px;
+        }
+
+        .required {
+            color: #e74c3c;
+        }
+
+        .form-input {
+            width: 100%;
+            padding: 12px 16px;
+            border: 1px solid #e0e0e0;
+            border-radius: 8px;
+            font-size: 14px;
+            color: #333;
+            background: white;
+            transition: border-color 0.2s ease;
+        }
+
+        .form-input:focus {
+            outline: none;
+            border-color: #4CAF50;
+            box-shadow: 0 0 0 2px rgba(76, 175, 80, 0.1);
+        }
+
+        .form-input::placeholder {
+            color: #999;
+        }
+
+        /* Vehicle Details Section */
+        .vehicle-details {
+            border: 1px solid #e0e0e0;
+            border-radius: 8px;
+            padding: 16px;
+            background: #f9f9f9;
+        }
+
+        .vehicle-row {
+            display: flex;
+            gap: 12px;
+            margin-bottom: 12px;
+        }
+
+        .vehicle-col {
+            flex: 1;
+        }
+
+        .vehicle-col:last-child {
+            margin-bottom: 0;
+        }
+
+        .vehicle-label {
+            font-size: 12px;
+            color: #666;
+            margin-bottom: 4px;
+            display: block;
+        }
+
+        .vehicle-input {
+            width: 100%;
+            padding: 8px 12px;
+            border: 1px solid #ddd;
+            border-radius: 6px;
+            font-size: 13px;
+            color: #333;
+            background: white;
+        }
+
+        .vehicle-input:focus {
+            outline: none;
+            border-color: #4CAF50;
+        }
+
+        .vehicle-input::placeholder {
+            color: #aaa;
+        }
+
+        /* Problem Type Section */
+        .problem-options {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .problem-option {
+            padding: 12px 16px;
+            border: 1px solid #e0e0e0;
+            border-radius: 8px;
+            background: white;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            font-size: 14px;
+            color: #333;
+            text-align: left;
+        }
+
+        .problem-option:hover {
+            background: #f8f9fa;
+            border-color: #c0c0c0;
+        }
+
+        .problem-option.selected {
+            background: #fff9c4;
+            border-color: #f1c40f;
+            color: #333;
+        }
+
+        /* Modal Footer */
+        .modal-footer {
+            padding: 20px 24px;
+            border-top: 1px solid #e0e0e0;
+            display: flex;
+            justify-content: flex-end;
+        }
+
+        .btn-primary {
+            background: #f1c40f;
+            color: #333;
+            border: none;
+            padding: 12px 24px;
+            border-radius: 8px;
+            font-size: 14px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .btn-primary:hover {
+            background: #e6b800;
+            transform: translateY(-1px);
+        }
+
+        .btn-primary:disabled {
+            background: #ccc;
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        /* Other input field - hidden by default */
+        .other-input {
+            display: none;
+            width: 100%;
+            padding: 12px 16px;
+            border: 1px solid #e0e0e0;
+            border-radius: 8px;
+            font-size: 14px;
+            color: #333;
+            background: white;
+            margin-top: 8px;
+            transition: border-color 0.2s ease;
+        }
+
+        .other-input:focus {
+            outline: none;
+            border-color: #f1c40f;
+            box-shadow: 0 0 0 2px rgba(241, 196, 15, 0.1);
+        }
+
+        .other-input::placeholder {
+            color: #999;
+        }
+
+        /* Error state */
+        .error {
+            border-color: #e74c3c !important;
+        }
+
+        /* Responsive */
+        @media (max-width: 480px) {
+            .modal-container {
+                width: 95%;
+                margin: 10px;
+            }
+            
+            .modal-header {
+                padding: 16px 20px;
+            }
+            
+            .modal-content {
+                padding: 20px;
+            }
+            
+            .modal-footer {
+                padding: 16px 20px;
+            }
+
+            .vehicle-row {
+                flex-direction: column;
+                gap: 8px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <button class="demo-button" onclick="RoadsideRescueModal.open()">Open Roadside Rescue Modal</button>
+
+    <!-- Roadside Rescue Modal -->
+    <div class="modal-overlay" id="roadsideRescueModal">
+        <div class="modal-container">
+            <div class="modal-header">
+                <button class="back-btn" onclick="RoadsideRescueModal.close()">‹</button>
+                <h2 class="modal-title">Roadside Rescue</h2>
+                <button class="close-btn" onclick="RoadsideRescueModal.close()">×</button>
+                <p class="modal-subtitle">Please provide your details so we can assist you as soon as possible.</p>
+            </div>
+
+            <div class="modal-content">
+                <form id="roadsideRescueForm">
+                    <div class="form-group">
+                        <label class="form-label">Name <span class="required">*</span></label>
+                        <input type="text" name="name" class="form-input" placeholder="Enter your full name" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label">📍 Location <span class="required">*</span></label>
+                        <input type="text" name="location" class="form-input" placeholder="Enter your exact location" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label">📞 Contact Number <span class="required">*</span></label>
+                        <input type="tel" name="phone" class="form-input" placeholder="Enter your phone number" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label">🚗 Vehicle Details <span class="required">*</span></label>
+                        <div class="vehicle-details">
+                            <div class="vehicle-row">
+                                <div class="vehicle-col">
+                                    <label class="vehicle-label">Car Make/Model</label>
+                                    <input type="text" name="carModel" class="vehicle-input" placeholder="e.g., Toyota Camry" required>
+                                </div>
+                                <div class="vehicle-col">
+                                    <label class="vehicle-label">Plate Number</label>
+                                    <input type="text" name="plateNumber" class="vehicle-input" placeholder="e.g., ABC-123" required>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label">🔧 Type of Problem <span class="required">*</span></label>
+                        <div class="problem-options">
+                            <div class="problem-option" onclick="RoadsideRescueModal.selectProblem(this)">
+                                Flat tire
+                            </div>
+                            <div class="problem-option" onclick="RoadsideRescueModal.selectProblem(this)">
+                                Battery dead
+                            </div>
+                            <div class="problem-option" onclick="RoadsideRescueModal.selectProblem(this)">
+                                Overheating
+                            </div>
+                            <div class="problem-option" onclick="RoadsideRescueModal.selectProblem(this)">
+                                Unusual noise
+                            </div>
+                            <div class="problem-option" onclick="RoadsideRescueModal.selectProblem(this)">
+                                I see smoke
+                            </div>
+                            <div class="problem-option" onclick="RoadsideRescueModal.selectProblem(this)">
+                                Won't start
+                            </div>
+                            <div class="problem-option" onclick="RoadsideRescueModal.selectProblem(this)" data-type="other">
+                                Other
+                            </div>
+                        </div>
+                        <input type="text" name="otherProblem" class="other-input" id="otherProblemInput" placeholder="Please specify the problem...">
+                    </div>
+                </form>
+            </div>
+
+            <div class="modal-footer">
+                <button class="btn-primary" onclick="RoadsideRescueModal.submitForm()">Submit Request</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Roadside Rescue Modal Component
+        const RoadsideRescueModal = {
+            selectedProblem: null,
+            
+            open() {
+                document.getElementById('roadsideRescueModal').classList.add('active');
+                document.body.style.overflow = 'hidden';
+            },
+
+            close() {
+                document.getElementById('roadsideRescueModal').classList.remove('active');
+                document.body.style.overflow = 'auto';
+                this.reset();
+            },
+
+            selectProblem(element) {
+                // Remove selected class from all options
+                document.querySelectorAll('.problem-option').forEach(option => {
+                    option.classList.remove('selected');
+                });
+                
+                // Add selected class to clicked option
+                element.classList.add('selected');
+                
+                // Show/hide other input field
+                const otherInput = document.getElementById('otherProblemInput');
+                if (element.dataset.type === 'other') {
+                    otherInput.style.display = 'block';
+                    otherInput.focus();
+                    this.selectedProblem = 'Other';
+                } else {
+                    otherInput.style.display = 'none';
+                    otherInput.value = '';
+                    this.selectedProblem = element.textContent.trim();
+                }
+            },
+
+            validateForm() {
+                const form = document.getElementById('roadsideRescueForm');
+                const inputs = form.querySelectorAll('input[required]');
+                let isValid = true;
+                
+                // Clear previous error states
+                inputs.forEach(input => {
+                    input.classList.remove('error');
+                });
+                
+                // Check required fields
+                inputs.forEach(input => {
+                    if (!input.value.trim()) {
+                        isValid = false;
+                        input.classList.add('error');
+                    }
+                });
+                
+                // Check if problem is selected
+                if (!this.selectedProblem) {
+                    isValid = false;
+                    alert('Please select a type of problem.');
+                    return false;
+                }
+                
+                // Check if "Other" is selected and input is provided
+                const otherInput = document.getElementById('otherProblemInput');
+                if (this.selectedProblem === 'Other' && !otherInput.value.trim()) {
+                    isValid = false;
+                    otherInput.classList.add('error');
+                    alert('Please specify the problem details.');
+                    return false;
+                }
+                
+                if (!isValid) {
+                    alert('Please fill in all required fields.');
+                    return false;
+                }
+                
+                return true;
+            },
+
+            collectFormData() {
+                const form = document.getElementById('roadsideRescueForm');
+                const formData = new FormData(form);
+                
+                const data = {};
+                for (let [key, value] of formData.entries()) {
+                    data[key] = value;
+                }
+                
+                // Add problem type
+                const otherInput = document.getElementById('otherProblemInput');
+                data.problemType = this.selectedProblem === 'Other' 
+                    ? otherInput.value.trim() 
+                    : this.selectedProblem;
+                
+                // Add timestamp
+                data.timestamp = new Date().toISOString();
+                
+                return data;
+            },
+
+            submitForm() {
+                if (!this.validateForm()) {
+                    return;
+                }
+                
+                const formData = this.collectFormData();
+                
+                // Process form submission
+                console.log('Roadside rescue request submitted:', formData);
+                
+                // Here you would typically send the data to your server
+                // Example: fetch('/api/roadside-rescue', { method: 'POST', body: JSON.stringify(formData) })
+                
+                alert('Your roadside rescue request has been submitted! We will contact you shortly.');
+                this.close();
+            },
+
+            reset() {
+                const form = document.getElementById('roadsideRescueForm');
+                form.reset();
+                
+                // Clear selected problem options
+                document.querySelectorAll('.problem-option.selected').forEach(option => {
+                    option.classList.remove('selected');
+                });
+                
+                // Hide other input
+                const otherInput = document.getElementById('otherProblemInput');
+                otherInput.style.display = 'none';
+                otherInput.value = '';
+                
+                // Clear error states
+                document.querySelectorAll('.error').forEach(element => {
+                    element.classList.remove('error');
+                });
+                
+                this.selectedProblem = null;
+            }
+        };
+
+        // Event listeners
+        document.getElementById('roadsideRescueModal').addEventListener('click', function(e) {
+            if (e.target === this) {
+                RoadsideRescueModal.close();
+            }
+        });
+
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape' && document.getElementById('roadsideRescueModal').classList.contains('active')) {
+                RoadsideRescueModal.close();
+            }
+        });
+
+        // Remove error styling when user starts typing
+        document.addEventListener('input', function(e) {
+            if (e.target.classList.contains('error')) {
+                e.target.classList.remove('error');
+            }
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,1770 @@
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nard's Vehicle Maintenance Service - Our Services</title>
+    <style>
+        * {
+            padding: 0px;
+            margin: 0px;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background-color: #f8f4e6;
+        }
+
+        /* Header Section */
+        header {
+            background: linear-gradient(135deg, #E8B931 0%, #F3C734 100%);
+            padding: 15px 0;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        .header-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 20px;
+        }
+
+        .logo {
+            width: 80px;
+            height: 50px;
+            background: linear-gradient(135deg, #C8AD4A 0%, #D4B84A 100%);
+            border-radius: 4px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            position: relative;
+        }
+        
+        .logo::before {
+            content: '';
+            position: absolute;
+            top: 8px;
+            left: 8px;
+            right: 8px;
+            bottom: 8px;
+            border: 2px solid rgba(255,255,255,0.3);
+            border-radius: 2px;
+        }
+
+        .contact-info {
+            display: flex;
+            align-items: center;
+            gap: 40px;
+            font-size: 0.9rem;
+            color: #2c2c2c;
+            font-weight: 500;
+        }
+
+        .contact-info span {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            white-space: nowrap;
+        }
+
+        /* Navigation */
+        .nav-container {
+            background: white;
+            border-top: 1px solid #E8B931;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.08);
+            position: relative;
+        }
+
+        .nav-menu {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 20px;
+        }
+
+        .nav-links {
+            display: flex;
+            align-items: center;
+            position: relative;
+        }
+
+        .nav-item {
+            position: relative;
+        }
+
+        .nav-menu a {
+            text-decoration: none;
+            color: #2c2c2c;
+            padding: 18px 25px;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            position: relative;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .nav-menu a:hover {
+            color: #E8B931;
+        }
+
+        .nav-menu a.active {
+            color: #E8B931;
+            font-weight: 600;
+        }
+
+        .dropdown-arrow {
+            font-size: 0.8rem;
+            transition: transform 0.3s ease;
+        }
+
+        .nav-item:hover .dropdown-arrow {
+            transform: rotate(180deg);
+        }
+
+        /* Dropdown Styles */
+        .dropdown {
+            position: absolute;
+            top: 100%;
+            left: 0;
+            background: white;
+            border: 1px solid #E8B931;
+            border-radius: 8px;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(-10px);
+            transition: all 0.3s ease;
+            z-index: 1000;
+            min-width: 280px;
+            padding: 15px 0;
+        }
+
+        .nav-item:hover .dropdown {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+
+        .dropdown-content {
+            padding: 10px 0;
+        }
+
+        .dropdown-section {
+            margin-bottom: 15px;
+        }
+
+        .dropdown-section:last-child {
+            margin-bottom: 0;
+        }
+
+        .dropdown-title {
+            font-size: 0.9rem;
+            font-weight: 600;
+            color: #E8B931;
+            padding: 8px 20px;
+            border-bottom: 1px solid #f0f0f0;
+            margin-bottom: 10px;
+        }
+
+        .dropdown a {
+            display: block;
+            color: #555;
+            padding: 8px 20px;
+            text-decoration: none;
+            font-size: 0.9rem;
+            transition: all 0.3s ease;
+            border-left: 3px solid transparent;
+        }
+
+        .dropdown a:hover {
+            background: #f8f4e6;
+            color: #E8B931;
+            border-left-color: #E8B931;
+        }
+
+        .book-service-btn {
+            background: linear-gradient(135deg, #E8B931 0%, #F3C734 100%);
+            color: white;
+            padding: 12px 28px;
+            border: none;
+            border-radius: 4px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            box-shadow: 0 2px 8px rgba(232, 185, 49, 0.3);
+        }
+
+        .book-service-btn:hover {
+            background: linear-gradient(135deg, #D4A52A 0%, #E8B931 100%);
+            transform: translateY(-1px);
+            box-shadow: 0 4px 12px rgba(232, 185, 49, 0.4);
+        }
+
+        /* Hero Section with Title */
+        .hero-section {
+            background: linear-gradient(135deg, #f8f4e6 0%, #faf6e8 100%);
+            padding: 60px 20px;
+            text-align: center;
+            border-bottom: 3px solid #E8B931;
+        }
+
+        .hero-section h1 {
+            font-size: 4rem;
+            font-weight: 900;
+            color: #2c2c2c;
+            margin-bottom: 30px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
+            letter-spacing: -1px;
+        }
+
+        .hero-description {
+            max-width: 800px;
+            margin: 0 auto;
+            font-size: 1.1rem;
+            color: #555;
+            line-height: 1.8;
+            padding: 0 20px;
+        }
+
+        /* Services Section */
+        .services-section {
+            background: white;
+            padding: 80px 20px;
+        }
+
+        .services-container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(380px, 1fr));
+            gap: 30px;
+            margin-bottom: 60px;
+        }
+
+        .service-card {
+            background: #F3E5AB;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.1);
+            transition: all 0.3s ease;
+            border: 1px solid #E8B931;
+        }
+
+        .service-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 15px 35px rgba(0,0,0,0.15);
+        }
+
+        .service-image {
+            width: 100%;
+            height: 220px;
+            background: linear-gradient(135deg, #F3E5AB 0%, #F8EAAB 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #888;
+            font-size: 0.9rem;
+            position: relative;
+            overflow: hidden;
+            border-bottom: 1px solid #E8B931;
+        }
+
+        .service-image::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(45deg, transparent 40%, rgba(255,255,255,0.1) 50%, transparent 60%);
+            animation: shimmer 3s infinite;
+        }
+
+        @keyframes shimmer {
+            0% { transform: translateX(-100%); }
+            100% { transform: translateX(100%); }
+        }
+
+        .service-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .service-image .placeholder {
+            display: none;
+        }
+
+        .service-image img[src="service1.png"],
+        .service-image img[src="service2.png"],
+        .service-image img[src="service3.png"],
+        .service-image img[src="service4.png"],
+        .service-image img[src="service5.png"],
+        .service-image img[src="service6.png"] {
+            display: block;
+        }
+
+        .service-image img:not([src]) + .placeholder,
+        .service-image img[src=""]:not([src*="."]) + .placeholder {
+            display: block;
+        }
+
+        .service-content {
+            padding: 30px;
+        }
+
+        .service-content h3 {
+            font-size: 1.5rem;
+            color: #2c2c2c;
+            margin-bottom: 15px;
+            font-weight: 700;
+        }
+
+        .service-content p {
+            font-size: 1rem;
+            color: #666;
+            line-height: 1.7;
+            margin-bottom: 25px;
+        }
+
+        .read-more-btn {
+            background: none;
+            color: #2A6F97;
+            padding: 0;
+            border: none;
+            font-size: 0.95rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: underline;
+            text-underline-offset: 3px;
+        }
+
+        .read-more-btn:hover {
+            color: #1A5F87;
+            text-decoration: underline;
+            text-underline-offset: 2px;
+        }
+
+        /* Book Service Section */
+        .book-service-section {
+            background: #F8F2E3;
+            padding: 80px 20px;
+            text-align: center;
+        }
+
+        .book-service-container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: linear-gradient(135deg, #E4D594 0%, #E9DA99 100%);
+            padding: 60px 40px;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+            border: 2px solid #E8B931;
+        }
+
+        .book-service-section h2 {
+            font-size: 3rem;
+            color: #2c2c2c;
+            margin-bottom: 25px;
+            font-weight: 800;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
+        }
+
+        .book-service-section p {
+            font-size: 1.2rem;
+            color: #555;
+            margin-bottom: 50px;
+            line-height: 1.7;
+        }
+
+        .booking-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            flex-wrap: wrap;
+        }
+
+        .booking-btn {
+            background: linear-gradient(135deg, white 0%, #f8f8f8 100%);
+            color: #2c2c2c;
+            padding: 18px 35px;
+            border: 2px solid #E8B931;
+            border-radius: 30px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            min-width: 220px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+
+        .booking-btn:hover {
+            background: linear-gradient(135deg, #E8B931 0%, #F3C734 100%);
+            color: white;
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(232, 185, 49, 0.3);
+        }
+
+        /* Footer */
+        footer {
+            background: linear-gradient(135deg, #C8AD4A 0%, #D4B84A 100%);
+            padding: 50px 20px 20px;
+            color: #2c2c2c;
+        }
+
+        .footer-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+        }
+
+        .footer-section h4 {
+            color: #2c2c2c;
+            margin-bottom: 20px;
+            font-size: 1.2rem;
+            font-weight: 700;
+        }
+
+        .footer-section p, .footer-section a {
+            color: #444;
+            font-size: 0.95rem;
+            line-height: 1.8;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .footer-section a:hover {
+            color: #2c2c2c;
+        }
+
+        .footer-bottom {
+            text-align: center;
+            margin-top: 40px;
+            padding-top: 25px;
+            border-top: 2px solid #E8B931;
+            color: #555;
+            font-size: 0.9rem;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .header-container {
+                flex-direction: column;
+                gap: 15px;
+            }
+
+            .contact-info {
+                flex-direction: column;
+                gap: 10px;
+                text-align: center;
+            }
+
+            .nav-menu {
+                flex-direction: column;
+                gap: 10px;
+                padding: 15px 20px;
+            }
+
+            .nav-links {
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+
+            .nav-menu a {
+                padding: 12px 18px;
+            }
+
+            .dropdown {
+                position: static;
+                opacity: 1;
+                visibility: visible;
+                transform: none;
+                box-shadow: none;
+                border: none;
+                border-radius: 0;
+                display: none;
+            }
+
+            .nav-item.mobile-active .dropdown {
+                display: block;
+            }
+
+            .hero-section h1 {
+                font-size: 2.8rem;
+            }
+
+            .services-grid {
+                grid-template-columns: 1fr;
+                gap: 25px;
+            }
+
+            .booking-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .booking-btn {
+                width: 100%;
+                max-width: 300px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .hero-section h1 {
+                font-size: 2.2rem;
+            }
+
+            .hero-description {
+                font-size: 1rem;
+            }
+
+            .service-content {
+                padding: 25px;
+            }
+
+            .book-service-section h2 {
+                font-size: 2.2rem;
+            }
+
+            .services-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* Modal Overlay */
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.3s ease;
+}
+
+.modal-overlay.active {
+    opacity: 1;
+    visibility: visible;
+}
+
+.modal-container {
+    background: white;
+    border-radius: 20px;
+    width: 90%;
+    max-width: 480px;
+    max-height: 90vh;
+    overflow: hidden;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+    transform: scale(0.9) translateY(20px);
+    transition: all 0.3s ease;
+}
+
+.modal-overlay.active .modal-container {
+    transform: scale(1) translateY(0);
+}
+
+.modal-header {
+    padding: 20px 24px;
+    position: relative;
+    border-bottom: 1px solid #e0e0e0;
+}
+
+.modal-title {
+    font-size: 20px;
+    font-weight: 600;
+    color: #1a1a1a;
+    margin-bottom: 8px;
+}
+
+.modal-subtitle {
+    font-size: 14px;
+    color: #666;
+    line-height: 1.4;
+}
+
+.close-btn, .back-btn {
+    position: absolute;
+    top: 20px;
+    background: none;
+    border: none;
+    font-size: 24px;
+    color: #666;
+    cursor: pointer;
+    width: 32px;
+    height: 32px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    transition: all 0.2s ease;
+}
+
+.close-btn {
+    right: 24px;
+}
+
+.back-btn {
+    left: 24px;
+    font-size: 20px;
+}
+
+.close-btn:hover, .back-btn:hover {
+    background: #f0f0f0;
+    color: #333;
+}
+
+.modal-content {
+    padding: 24px;
+    max-height: 60vh;
+    overflow-y: auto;
+}
+
+.form-group {
+    margin-bottom: 24px;
+}
+
+.form-label {
+    display: block;
+    font-size: 14px;
+    font-weight: 500;
+    color: #333;
+    margin-bottom: 8px;
+}
+
+.required {
+    color: #e74c3c;
+}
+
+.form-input {
+    width: 100%;
+    padding: 12px 16px;
+    border: 1px solid #e0e0e0;
+    border-radius: 8px;
+    font-size: 14px;
+    color: #333;
+    background: white;
+    transition: border-color 0.2s ease;
+}
+
+.form-input:focus {
+    outline: none;
+    border-color: #4CAF50;
+    box-shadow: 0 0 0 2px rgba(76, 175, 80, 0.1);
+}
+
+.vehicle-details {
+    border: 1px solid #e0e0e0;
+    border-radius: 8px;
+    padding: 16px;
+    background: #f9f9f9;
+}
+
+.vehicle-row {
+    display: flex;
+    gap: 12px;
+    margin-bottom: 12px;
+}
+
+.vehicle-col {
+    flex: 1;
+}
+
+.vehicle-label {
+    font-size: 12px;
+    color: #666;
+    margin-bottom: 4px;
+    display: block;
+}
+
+.vehicle-input {
+    width: 100%;
+    padding: 8px 12px;
+    border: 1px solid #ddd;
+    border-radius: 6px;
+    font-size: 13px;
+    color: #333;
+    background: white;
+}
+
+.problem-options {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.problem-option {
+    padding: 12px 16px;
+    border: 1px solid #e0e0e0;
+    border-radius: 8px;
+    background: white;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    font-size: 14px;
+    color: #333;
+    text-align: left;
+}
+
+.problem-option:hover {
+    background: #f8f9fa;
+    border-color: #c0c0c0;
+}
+
+.problem-option.selected {
+    background: #fff9c4;
+    border-color: #f1c40f;
+    color: #333;
+}
+
+.other-input {
+    display: none;
+    width: 100%;
+    padding: 12px 16px;
+    border: 1px solid #e0e0e0;
+    border-radius: 8px;
+    font-size: 14px;
+    color: #333;
+    background: white;
+    margin-top: 8px;
+    transition: border-color 0.2s ease;
+}
+
+.modal-footer {
+    padding: 20px 24px;
+    border-top: 1px solid #e0e0e0;
+    display: flex;
+    justify-content: flex-end;
+}
+
+.btn-primary {
+    background: #f1c40f;
+    color: #333;
+    border: none;
+    padding: 12px 24px;
+    border-radius: 8px;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.btn-primary:hover {
+    background: #e6b800;
+    transform: translateY(-1px);
+}
+
+.error {
+    border-color: #e74c3c !important;
+}
+
+@media (max-width: 480px) {
+    .modal-container {
+        width: 95%;
+        margin: 10px;
+    }
+    
+    .vehicle-row {
+        flex-direction: column;
+        gap: 8px;
+    }
+}
+    </style>
+</head>
+<body>
+    <!-- Header Section -->
+    <header>
+        <div class="header-container">
+            <div class="logo"></div>
+            <div class="contact-info">
+                <span>📞 0956-214-6595</span>
+                <span>🕒 Mon - Sat: 8:00 am - 6:00 pm</span>
+            </div>
+        </div>
+    </header>
+
+    <!-- Navigation -->
+    <nav class="nav-container">
+        <div class="nav-menu">
+            <div class="nav-links">
+                <a href="index.html">Home</a>
+                
+                <div class="nav-item">
+                    <a href="#services" class="active">Services <span class="dropdown-arrow">▼</span></a>
+                    <div class="dropdown">
+                        <div class="dropdown-content">
+                            <div class="dropdown-section">
+                                <div class="dropdown-title">Repair Options</div>
+                                <a href="#engine-repair">Engine Repairs & Maintenance</a>
+                                <a href="#transmission">Transmission Service</a>
+                                <a href="#clutch">Clutch Repairs</a>
+                                <a href="#underchassis">Underchassis Services</a>
+                                <a href="#air-system">Air System Repairs</a>
+                                <a href="#fuel-system">Fuel System Services</a>
+                                <a href="#training">Training with Periodic & Preventive Maintenance</a>
+                            </div>
+                            <div class="dropdown-section">
+                                <div class="dropdown-title">Specialized Services</div>
+                                <a href="#troubleshooting">Troubleshooting via Scanner</a>
+                                <a href="#rail-diesel">Common Rail Diesel Injection Technology</a>
+                                <a href="#dismantling">Dismantling & Installing of Injection Pumps</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="nav-item">
+                    <a href="#vehicles">Vehicles <span class="dropdown-arrow">▼</span></a>
+                    <div class="dropdown">
+                        <div class="dropdown-content">
+                            <div class="dropdown-section">
+                                <div class="dropdown-title">Vehicle Types</div>
+                                <a href="#light-vehicles">Light Vehicles</a>
+                                <a href="#heavy-vehicles">Heavy Vehicles</a>
+                                <a href="#diesel-vehicles">Diesel Vehicles</a>
+                                <a href="#gasoline-vehicles">Gasoline Vehicles</a>
+                                <a href="#commercial-vehicles">Commercial Vehicles</a>
+                                <a href="#personal-vehicles">Personal Vehicles</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="nav-item">
+                    <a href="#about">About <span class="dropdown-arrow">▼</span></a>
+                    <div class="dropdown">
+                        <div class="dropdown-content">
+                            <div class="dropdown-section">
+                                <a href="#about-us">About Us</a>
+                                <a href="#faqs">FAQs</a>
+                                <a href="#contact">Contact Us</a>
+                                <a href="#testimonials">Testimonials</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <a href="#location">Location</a>
+                <a href="#reviews">Reviews</a>
+            </div>
+            <button class="book-service-btn">Book Service</button>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero-section">
+        <h1>Our Services</h1>
+        <div class="hero-description">
+            <p>Nard's Vehicle Maintenance Service is committed to providing dependable, honest work for every type of vehicle. Whether it's engine repairs, transmission issues, or simple maintenance, our team handles it with care and precision. We also offer home service and roadside assistance to make sure help is always within reach when needed.</p>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section class="services-section">
+        <div class="services-container">
+            <div class="services-grid">
+                <!-- Transmission Service -->
+                <div class="service-card">
+                    <div class="service-image">
+                        <img src="service1.png" alt="Transmission Service">
+                        <span class="placeholder">Transmission Service Image</span>
+                    </div>
+                    <div class="service-content">
+                        <h3>Transmission Service</h3>
+                        <p>The transmission keeps engine power moving smoothly to the wheels. Regular service helps avoid shifting problems and costly repairs.</p>
+                        <button class="read-more-btn">Read More</button>
+                    </div>
+                </div>
+
+                <!-- Clutch Repairs -->
+                <div class="service-card">
+                    <div class="service-image">
+                        <img src="service2.png" alt="Clutch Repairs">
+                        <span class="placeholder">Clutch Repairs Image</span>
+                    </div>
+                    <div class="service-content">
+                        <h3>Clutch Repairs</h3>
+                        <p>A worn clutch can cause slipping, sticking, or trouble changing gears. Quick repairs help restore smooth, reliable performance.</p>
+                        <button class="read-more-btn">Read More</button>
+                    </div>
+                </div>
+
+                <!-- Air System Repairs -->
+                <div class="service-card">
+                    <div class="service-image">
+                        <img src="service3.png" alt="Air System Repairs">
+                        <span class="placeholder">Air System Repairs Image</span>
+                    </div>
+                    <div class="service-content">
+                        <h3>Air System Repairs</h3>
+                        <p>Keeps cabin temperature comfortable and defogs windows. Regular service ensures it works when needed.</p>
+                        <button class="read-more-btn">Read More</button>
+                    </div>
+                </div>
+
+                <!-- Engine Repairs & Maintenance -->
+                <div class="service-card">
+                    <div class="service-image">
+                        <img src="service4.png" alt="Engine Repairs & Maintenance">
+                        <span class="placeholder">Engine Repairs Image</span>
+                    </div>
+                    <div class="service-content">
+                        <h3>Engine Repairs & Maintenance</h3>
+                        <p>Keeps the engine running smooth and reliable. Routine checks prevent major issues.</p>
+                        <button class="read-more-btn">Read More</button>
+                    </div>
+                </div>
+
+                <!-- Fuel System Services -->
+                <div class="service-card">
+                    <div class="service-image">
+                        <img src="service5.png" alt="Fuel System Services">
+                        <span class="placeholder">Fuel System Services Image</span>
+                    </div>
+                    <div class="service-content">
+                        <h3>Fuel System Services</h3>
+                        <p>Delivers clean fuel for steady performance. Maintenance improves mileage and starting.</p>
+                        <button class="read-more-btn">Read More</button>
+                    </div>
+                </div>
+
+                <!-- Underchassis Services -->
+                <div class="service-card">
+                    <div class="service-image">
+                        <img src="service6.png" alt="Underchassis Services">
+                        <span class="placeholder">Underchassis Services Image</span>
+                    </div>
+                    <div class="service-content">
+                        <h3>Underchassis Services</h3>
+                        <p>Handles bumps, potholes, and road stress. Inspections keep the ride stable and safe.</p>
+                        <button class="read-more-btn">Read More</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Book Service Section -->
+<section class="book-service-section">
+    <div class="book-service-container">
+        <h2>Book a Service</h2>
+        <p>Ready to get your vehicle checked, serviced, or rescued? Choose the option that fits your needs best and we'll handle the rest.</p>
+        <div class="booking-buttons">
+            <button class="booking-btn">Home Service Booking</button>
+            <button class="booking-btn" onclick="RoadsideRescueModal.open()">Roadside Rescue</button>
+        </div>
+    </div>
+</section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-container">
+            <div class="footer-section">
+                <div class="logo" style="width: 80px; height: 50px; margin-bottom: 20px;"></div>
+                <p>0956-214-6595</p>
+                <p>B16 L6 Duhat St. San Miguel, 1 Subd. Molino 4, City of Bacoor, 4102 Cavite</p>
+                <p>Monday - Saturday: 8 AM-6 PM<br>Sunday: Closed</p>
+            </div>
+            <div class="footer-section">
+                <h4>Service</h4>
+                <p><a href="#">Engine Repair & Maintenance</a></p>
+                <p><a href="#">Transmission & Clutch Services</a></p>
+                <p><a href="#">Underchassis Repair</a></p>
+                <p><a href="#">Air System Maintenance</a></p>
+                <p><a href="#">Fuel System Repair</a></p>
+                <p><a href="#">Dismantling & Installation</a></p>
+                <p><a href="#">Diagnostic Scanner</a></p>
+            </div>
+            <div class="footer-section">
+                <h4>Quick Links</h4>
+                <p><a href="#">Home Service Booking</a></p>
+                <p><a href="#">Roadside Rescue Booking</a></p>
+                <p><a href="#">Contact Us</a></p>
+                <p><a href="#">About Us</a></p>
+                <p><a href="#">FAQs</a></p>
+                <p><a href="#">Reviews</a></p>
+            </div>
+            <div class="footer-section">
+                <h4>Legal</h4>
+                <p><a href="#">Privacy Policy</a></p>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>Copyright © 2025 All Rights Reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Mobile dropdown functionality
+        document.addEventListener('DOMContentLoaded', function() {
+            const navItems = document.querySelectorAll('.nav-item');
+            
+            navItems.forEach(item => {
+                const link = item.querySelector('a');
+                const dropdown = item.querySelector('.dropdown');
+                
+                // For mobile, add click functionality
+                if (window.innerWidth <= 768) {
+                    link.addEventListener('click', function(e) {
+                        e.preventDefault();
+                        item.classList.toggle('mobile-active');
+                        
+                        // Close other dropdowns
+                        navItems.forEach(otherItem => {
+                            if (otherItem !== item) {
+                                otherItem.classList.remove('mobile-active');
+                            }
+                        });
+                    });
+                }
+            });
+            
+            // Handle window resize
+            window.addEventListener('resize', function() {
+                if (window.innerWidth > 768) {
+                    navItems.forEach(item => {
+                        item.classList.remove('mobile-active');
+                    });
+                }
+            });
+
+            // Handle image loading errors
+            const images = document.querySelectorAll('.service-image img');
+            images.forEach(img => {
+                img.onerror = function() {
+                    this.style.display = 'none';
+                    const placeholder = this.nextElementSibling;
+                    if (placeholder && placeholder.classList.contains('placeholder')) {
+                        placeholder.style.display = 'block';
+                    }
+                };
+                
+                img.onload = function() {
+                    const placeholder = this.nextElementSibling;
+                    if (placeholder && placeholder.classList.contains('placeholder')) {
+                        placeholder.style.display = 'none';
+                    }
+                };
+            });
+        });
+
+        // Existing functionality
+        document.querySelectorAll('.read-more-btn').forEach(button => {
+            button.addEventListener('click', function() {
+                const serviceTitle = this.parentElement.querySelector('h3').textContent;
+                alert(`More details about ${serviceTitle} will be available soon!`);
+            });
+        });
+
+        document.querySelector('.book-service-btn').addEventListener('click', function() {
+            NardsModal.open();
+        });
+
+        // Dropdown link functionality
+        document.querySelectorAll('.dropdown a').forEach(link => {
+            link.addEventListener('click', function(e) {
+                e.preventDefault();
+                const linkText = this.textContent;
+                alert(`${linkText} page will be available soon!`);
+            });
+        });
+
+        // Roadside Rescue Modal Component
+const RoadsideRescueModal = {
+    selectedProblem: null,
+    
+    open() {
+        document.getElementById('roadsideRescueModal').classList.add('active');
+        document.body.style.overflow = 'hidden';
+    },
+
+    close() {
+        document.getElementById('roadsideRescueModal').classList.remove('active');
+        document.body.style.overflow = 'auto';
+        this.reset();
+    },
+
+    selectProblem(element) {
+        document.querySelectorAll('.problem-option').forEach(option => {
+            option.classList.remove('selected');
+        });
+        
+        element.classList.add('selected');
+        
+        const otherInput = document.getElementById('otherProblemInput');
+        if (element.dataset.type === 'other') {
+            otherInput.style.display = 'block';
+            otherInput.focus();
+            this.selectedProblem = 'Other';
+        } else {
+            otherInput.style.display = 'none';
+            otherInput.value = '';
+            this.selectedProblem = element.textContent.trim();
+        }
+    },
+
+    validateForm() {
+        const form = document.getElementById('roadsideRescueForm');
+        const inputs = form.querySelectorAll('input[required]');
+        let isValid = true;
+        
+        inputs.forEach(input => {
+            input.classList.remove('error');
+        });
+        
+        inputs.forEach(input => {
+            if (!input.value.trim()) {
+                isValid = false;
+                input.classList.add('error');
+            }
+        });
+        
+        if (!this.selectedProblem) {
+            isValid = false;
+            alert('Please select a type of problem.');
+            return false;
+        }
+        
+        const otherInput = document.getElementById('otherProblemInput');
+        if (this.selectedProblem === 'Other' && !otherInput.value.trim()) {
+            isValid = false;
+            otherInput.classList.add('error');
+            alert('Please specify the problem details.');
+            return false;
+        }
+        
+        if (!isValid) {
+            alert('Please fill in all required fields.');
+            return false;
+        }
+        
+        return true;
+    },
+
+    collectFormData() {
+        const form = document.getElementById('roadsideRescueForm');
+        const formData = new FormData(form);
+        
+        const data = {};
+        for (let [key, value] of formData.entries()) {
+            data[key] = value;
+        }
+        
+        const otherInput = document.getElementById('otherProblemInput');
+        data.problemType = this.selectedProblem === 'Other' 
+            ? otherInput.value.trim() 
+            : this.selectedProblem;
+        
+        data.timestamp = new Date().toISOString();
+        
+        return data;
+    },
+
+    submitForm() {
+        if (!this.validateForm()) {
+            return;
+        }
+        
+        const formData = this.collectFormData();
+        console.log('Roadside rescue request submitted:', formData);
+        
+        alert('Your roadside rescue request has been submitted! We will contact you shortly.');
+        this.close();
+    },
+
+    reset() {
+        const form = document.getElementById('roadsideRescueForm');
+        form.reset();
+        
+        document.querySelectorAll('.problem-option.selected').forEach(option => {
+            option.classList.remove('selected');
+        });
+        
+        const otherInput = document.getElementById('otherProblemInput');
+        otherInput.style.display = 'none';
+        otherInput.value = '';
+        
+        document.querySelectorAll('.error').forEach(element => {
+            element.classList.remove('error');
+        });
+        
+        this.selectedProblem = null;
+    }
+};
+
+// Modal event listeners
+document.addEventListener('DOMContentLoaded', function() {
+    const modal = document.getElementById('roadsideRescueModal');
+    if (modal) {
+        modal.addEventListener('click', function(e) {
+            if (e.target === this) {
+                RoadsideRescueModal.close();
+            }
+        });
+    }
+});
+
+document.addEventListener('keydown', function(e) {
+    if (e.key === 'Escape' && document.getElementById('roadsideRescueModal')?.classList.contains('active')) {
+        RoadsideRescueModal.close();
+    }
+});
+
+document.addEventListener('input', function(e) {
+    if (e.target.classList.contains('error')) {
+        e.target.classList.remove('error');
+    }
+});
+    </script>
+    <script src="booking.html"></script>
+
+<!-- Modal -->
+<div class="modal-overlay" id="serviceModal">
+    <div class="modal-container">
+        <div class="modal-header">
+            <h2 class="modal-title">Nard's Service</h2>
+            <p class="modal-subtitle">Select all services that apply</p>
+            <button class="close-btn" onclick="NardsModal.close()">×</button>
+            
+            <div class="progress-bar">
+                <div class="progress-fill"></div>
+            </div>
+        </div>
+
+        <div class="modal-content">
+            <div class="section-title">Not sure what's wrong?</div>
+            
+            <div class="quick-option" onclick="NardsModal.toggleOption(this)">
+                <div class="option-icon">📝</div>
+                <div class="option-content">
+                    <div class="option-title">I'll describe what I need</div>
+                    <div class="option-description">Please note all concerns</div>
+                </div>
+                <div class="checkbox"></div>
+            </div>
+
+            <div class="section-title" style="margin-top: 24px;">Instant Booking</div>
+
+            <div class="quick-option" onclick="NardsModal.toggleOption(this)">
+                <div class="option-icon">🔧</div>
+                <div class="option-content">
+                    <div class="option-title">Engine Service</div>
+                    <div class="option-description">Engine tune-up, diagnostics, or repair needed</div>
+                </div>
+                <div class="checkbox"></div>
+            </div>
+
+            <div class="quick-option" onclick="NardsModal.toggleOption(this)">
+                <div class="option-icon">⚙️</div>
+                <div class="option-content">
+                    <div class="option-title">Transmission / Clutch Service</div>
+                    <div class="option-description">Issues with shifting or clutch</div>
+                </div>
+                <div class="checkbox"></div>
+            </div>
+
+            <div class="quick-option" onclick="NardsModal.toggleOption(this)">
+                <div class="option-icon">🚗</div>
+                <div class="option-content">
+                    <div class="option-title">Underchassis Repair</div>
+                    <div class="option-description">Suspension, steering, or underbody concerns</div>
+                </div>
+                <div class="checkbox"></div>
+            </div>
+
+            <div class="quick-option" onclick="NardsModal.toggleOption(this)">
+                <div class="option-icon">❄️</div>
+                <div class="option-content">
+                    <div class="option-title">Air System Service</div>
+                    <div class="option-description">A/C or ventilation issue</div>
+                </div>
+                <div class="checkbox"></div>
+            </div>
+
+            <div class="quick-option" onclick="NardsModal.toggleOption(this)">
+                <div class="option-icon">⛽</div>
+                <div class="option-content">
+                    <div class="option-title">Fuel System / Injection Service</div>
+                    <div class="option-description">Injection pump issues or fuel leak</div>
+                </div>
+                <div class="checkbox"></div>
+            </div>
+
+            <div class="quick-option" onclick="NardsModal.toggleOption(this)">
+                <div class="option-icon">🛒</div>
+                <div class="option-content">
+                    <div class="option-title">Parts Replacement & Installation</div>
+                    <div class="option-description">Genuine parts with warranty</div>
+                </div>
+                <div class="checkbox"></div>
+            </div>
+
+            <div class="quick-option" onclick="NardsModal.toggleOption(this)">
+                <div class="option-icon">🔒</div>
+                <div class="option-content">
+                    <div class="option-title">Periodic & Preventive Maintenance</div>
+                    <div class="option-description">Regular check-up and tune-up</div>
+                </div>
+                <div class="checkbox"></div>
+            </div>
+
+            <div class="quick-option" onclick="NardsModal.toggleOption(this)">
+                <div class="option-icon">🔍</div>
+                <div class="option-content">
+                    <div class="option-title">Used Vehicle Inspection</div>
+                    <div class="option-description">Before buying or selling</div>
+                </div>
+                <div class="checkbox"></div>
+            </div>
+
+            <div class="quick-option" onclick="NardsModal.toggleOption(this)">
+                <div class="option-icon">❓</div>
+                <div class="option-content">
+                    <div class="option-title">Other Concerns</div>
+                    <div class="option-description">Describe your issue</div>
+                </div>
+                <div class="checkbox"></div>
+            </div>
+        </div>
+
+        <div class="modal-footer">
+            <button class="btn btn-secondary" onclick="NardsModal.addNote()">Add note</button>
+            <button class="btn btn-primary" onclick="NardsModal.proceedBooking()">Next</button>
+        </div>
+    </div>
+</div>
+
+<!-- CSS for the modal -->
+<style>
+/* Modal Overlay */
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.3s ease;
+}
+
+.modal-overlay.active {
+    opacity: 1;
+    visibility: visible;
+}
+
+/* Modal Container */
+.modal-container {
+    background: white;
+    border-radius: 20px;
+    width: 90%;
+    max-width: 480px;
+    max-height: 90vh;
+    overflow: hidden;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+    transform: scale(0.9) translateY(20px);
+    transition: all 0.3s ease;
+}
+
+.modal-overlay.active .modal-container {
+    transform: scale(1) translateY(0);
+}
+
+/* Modal Header */
+.modal-header {
+    padding: 24px 24px 0;
+    position: relative;
+}
+
+.modal-title {
+    font-size: 24px;
+    font-weight: 700;
+    color: #1a1a1a;
+    margin-bottom: 8px;
+}
+
+.modal-subtitle {
+    font-size: 14px;
+    color: #666;
+    margin-bottom: 20px;
+}
+
+.close-btn {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    background: none;
+    border: none;
+    font-size: 24px;
+    color: #666;
+    cursor: pointer;
+    width: 32px;
+    height: 32px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    transition: all 0.2s ease;
+}
+
+.close-btn:hover {
+    background: #f0f0f0;
+    color: #333;
+}
+
+/* Progress Bar */
+.progress-bar {
+    height: 3px;
+    background: #e0e0e0;
+    border-radius: 2px;
+    overflow: hidden;
+    margin-bottom: 24px;
+}
+
+.progress-fill {
+    height: 100%;
+    background: linear-gradient(90deg, #4CAF50, #45a049);
+    width: 0%;
+    transition: width 0.3s ease;
+}
+
+/* Modal Content */
+.modal-content {
+    padding: 0 24px;
+    max-height: 60vh;
+    overflow-y: auto;
+}
+
+.section-title {
+    font-size: 16px;
+    font-weight: 600;
+    color: #333;
+    margin-bottom: 16px;
+}
+
+.quick-option {
+    display: flex;
+    align-items: center;
+    padding: 12px 16px;
+    margin-bottom: 8px;
+    background: #fff;
+    border: 1px solid #e0e0e0;
+    border-radius: 12px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    gap: 12px;
+}
+
+.quick-option:hover {
+    background: #f8f9fa;
+    border-color: #c0c0c0;
+}
+
+.quick-option.selected {
+    background: #f0f8ff;
+    border-color: #4CAF50;
+    box-shadow: 0 0 0 2px rgba(76, 175, 80, 0.1);
+}
+
+.option-icon {
+    width: 32px;
+    height: 32px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 18px;
+    border-radius: 8px;
+    flex-shrink: 0;
+}
+
+.option-content {
+    flex: 1;
+}
+
+.option-title {
+    font-size: 15px;
+    font-weight: 600;
+    color: #1a1a1a;
+    margin-bottom: 2px;
+}
+
+.option-description {
+    font-size: 13px;
+    color: #666;
+    line-height: 1.3;
+}
+
+.checkbox {
+    width: 20px;
+    height: 20px;
+    border: 2px solid #ddd;
+    border-radius: 4px;
+    margin-left: auto;
+    position: relative;
+    transition: all 0.2s ease;
+}
+
+.quick-option.selected .checkbox {
+    background: #4CAF50;
+    border-color: #4CAF50;
+}
+
+.quick-option.selected .checkbox::after {
+    content: '✓';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: white;
+    font-size: 12px;
+    font-weight: bold;
+}
+
+/* Modal Footer */
+.modal-footer {
+    padding: 20px 24px 24px;
+    display: flex;
+    gap: 12px;
+}
+
+.btn {
+    flex: 1;
+    padding: 14px 20px;
+    border: none;
+    border-radius: 10px;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.btn-secondary {
+    background: #f0f0f0;
+    color: #666;
+}
+
+.btn-secondary:hover {
+    background: #e0e0e0;
+}
+
+.btn-primary {
+    background: linear-gradient(135deg, #FFF200 0%, #FFD700 100%);
+    color: #333;
+    box-shadow: 0 4px 12px rgba(255, 215, 0, 0.3);
+}
+
+.btn-primary:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 6px 16px rgba(255, 215, 0, 0.4);
+}
+
+/* Responsive */
+@media (max-width: 480px) {
+    .modal-container {
+        width: 95%;
+        margin: 10px;
+    }
+    
+    .modal-header {
+        padding: 20px 20px 0;
+    }
+    
+    .modal-content {
+        padding: 0 20px;
+    }
+    
+    .modal-footer {
+        padding: 20px;
+    }
+}
+</style>
+
+<!-- JavaScript for the modal functionality -->
+<script>
+// Nard's Modal Component
+const NardsModal = {
+    selectedServices: [],
+    
+    open() {
+        document.getElementById('serviceModal').classList.add('active');
+        document.body.style.overflow = 'hidden';
+    },
+
+    close() {
+        document.getElementById('serviceModal').classList.remove('active');
+        document.body.style.overflow = 'auto';
+    },
+
+    toggleOption(element) {
+        const isSelected = element.classList.contains('selected');
+        const optionTitle = element.querySelector('.option-title').textContent;
+        
+        if (isSelected) {
+            element.classList.remove('selected');
+            this.selectedServices = this.selectedServices.filter(service => service !== optionTitle);
+        } else {
+            element.classList.add('selected');
+            this.selectedServices.push(optionTitle);
+        }
+        
+        this.updateProgress();
+    },
+
+    updateProgress() {
+        const progressFill = document.querySelector('.progress-fill');
+        const percentage = Math.min((this.selectedServices.length / 10) * 100, 100);
+        progressFill.style.width = percentage + '%';
+    },
+
+    addNote() {
+        const event = new CustomEvent('addNoteRequested', {
+            detail: {
+                selectedServices: [...this.selectedServices]
+            }
+        });
+        document.dispatchEvent(event);
+    },
+
+    proceedBooking() {
+        if (this.selectedServices.length === 0) {
+            alert('Please select at least one service.');
+            return;
+        }
+        
+        const event = new CustomEvent('servicesSelected', {
+            detail: {
+                services: [...this.selectedServices],
+                timestamp: new Date().toISOString()
+            }
+        });
+        document.dispatchEvent(event);
+        
+        this.close();
+    },
+
+    reset() {
+        this.selectedServices = [];
+        document.querySelectorAll('.quick-option.selected').forEach(option => {
+            option.classList.remove('selected');
+        });
+        this.updateProgress();
+    }
+};
+
+// Event listeners for modal
+document.getElementById('serviceModal').addEventListener('click', function(e) {
+    if (e.target === this) {
+        NardsModal.close();
+    }
+});
+
+document.addEventListener('keydown', function(e) {
+    if (e.key === 'Escape') {
+        NardsModal.close();
+    }
+});
+
+// Example event listeners for integration
+document.addEventListener('servicesSelected', function(e) {
+    console.log('Services selected:', e.detail);
+    alert('Services selected: ' + e.detail.services.join(', '));
+});
+
+document.addEventListener('addNoteRequested', function(e) {
+    console.log('Add note requested for services:', e.detail);
+    alert('Add note functionality will be available soon!');
+});
+</script>
+
+<!-- Roadside Rescue Modal -->
+<div class="modal-overlay" id="roadsideRescueModal">
+    <div class="modal-container">
+        <div class="modal-header">
+            <button class="back-btn" onclick="RoadsideRescueModal.close()">‹</button>
+            <h2 class="modal-title">Roadside Rescue</h2>
+            <button class="close-btn" onclick="RoadsideRescueModal.close()">×</button>
+            <p class="modal-subtitle">Please provide your details so we can assist you as soon as possible.</p>
+        </div>
+
+        <div class="modal-content">
+            <form id="roadsideRescueForm">
+                <div class="form-group">
+                    <label class="form-label">Name <span class="required">*</span></label>
+                    <input type="text" name="name" class="form-input" placeholder="Enter your full name" required>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label">📍 Location <span class="required">*</span></label>
+                    <input type="text" name="location" class="form-input" placeholder="Enter your exact location" required>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label">📞 Contact Number <span class="required">*</span></label>
+                    <input type="tel" name="phone" class="form-input" placeholder="Enter your phone number" required>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label">🚗 Vehicle Details <span class="required">*</span></label>
+                    <div class="vehicle-details">
+                        <div class="vehicle-row">
+                            <div class="vehicle-col">
+                                <label class="vehicle-label">Car Make/Model</label>
+                                <input type="text" name="carModel" class="vehicle-input" placeholder="e.g., Toyota Camry" required>
+                            </div>
+                            <div class="vehicle-col">
+                                <label class="vehicle-label">Plate Number</label>
+                                <input type="text" name="plateNumber" class="vehicle-input" placeholder="e.g., ABC-123" required>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label">🔧 Type of Problem <span class="required">*</span></label>
+                    <div class="problem-options">
+                        <div class="problem-option" onclick="RoadsideRescueModal.selectProblem(this)">Flat tire</div>
+                        <div class="problem-option" onclick="RoadsideRescueModal.selectProblem(this)">Battery dead</div>
+                        <div class="problem-option" onclick="RoadsideRescueModal.selectProblem(this)">Overheating</div>
+                        <div class="problem-option" onclick="RoadsideRescueModal.selectProblem(this)">Unusual noise</div>
+                        <div class="problem-option" onclick="RoadsideRescueModal.selectProblem(this)">I see smoke</div>
+                        <div class="problem-option" onclick="RoadsideRescueModal.selectProblem(this)">Won't start</div>
+                        <div class="problem-option" onclick="RoadsideRescueModal.selectProblem(this)" data-type="other">Other</div>
+                    </div>
+                    <input type="text" name="otherProblem" class="other-input" id="otherProblemInput" placeholder="Please specify the problem...">
+                </div>
+            </form>
+        </div>
+
+        <div class="modal-footer">
+            <button class="btn-primary" onclick="RoadsideRescueModal.submitForm()">Submit Request</button>
+        </div>
+    </div>
+</div>
+</body>
+</html>

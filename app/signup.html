@@ -1,0 +1,464 @@
+signup.html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nard's Vehicle Maintenance Services - Sign Up</title>
+    <link rel="preconnect" href="⁦https://fonts.googleapis.com⁩">
+    <link rel="preconnect" href="⁦https://fonts.gstatic.com⁩" crossorigin>
+    <link href="⁦https://fonts.googleapis.com/css2?family=Fjalla+One&family=Instrument+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap⁩" rel="stylesheet">
+    <style>
+        ■  {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Instrument Sans', sans-serif;
+            height: 100vh;
+            display: flex;
+            background-color: #f8f9fa; 
+        }
+
+        .left-section {
+            flex: 1;
+            background: linear-gradient(135deg, #e3f2fd 0%, #bbdefb 15%, #90caf9 30%, #64b5f6 45%, #42a5f5 60%, #2196f3 75%, #1e88e5 90%, #1976d2 100%);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: flex-start;
+            padding: 60px 80px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .left-section::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 80px;
+            height: 100%;
+            background: linear-gradient(90deg, rgba(255,255,255,0) 0%, rgba(255,255,255,0.1) 100%);
+            z-index: 3;
+            pointer-events: none;
+        }
+
+        .company-title {
+            font-family: 'Fjalla One', sans-serif;
+            color: #1a1a1a;
+            font-size: 3.2rem;
+            font-weight: 400;
+            margin-bottom: 60px;
+            text-align: left;
+            line-height: 0.95;
+            letter-spacing: -0.02em;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+            z-index: 4;
+            position: relative;
+        }
+
+        .car-display-wrapper {
+            position: relative;
+            width: 350px;
+            height: 280px;
+            margin-left: 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-bottom: 30px;
+        }
+
+        .car-image {
+            width: 100%;
+            height: auto;
+            display: block;
+            position: relative;
+            z-index: 2;
+            filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.1));
+        }
+
+        .halo-svg {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 480px;
+            height: 480px;
+            z-index: 1;
+            pointer-events: none;
+        }
+
+        .halo-track {
+            fill: none;
+            stroke: rgba(255, 215, 0, 0.2);
+            stroke-width: 8;
+            stroke-linecap: round;
+        }
+
+        .halo-progress {
+            fill: none;
+            stroke: #FFD700;
+            stroke-width: 8;
+            stroke-linecap: round;
+            stroke-dasharray: 219.9;
+            stroke-dashoffset: 62.6;
+            transform-origin: center;
+            filter: drop-shadow(0 0 8px rgba(255, 215, 0, 0.6));
+            animation: pulseGlow 2s ease-in-out infinite alternate;
+        }
+
+        @keyframes pulseGlow {
+            0% { 
+                stroke-dashoffset: 75.4;
+                filter: drop-shadow(0 0 10px rgba(255, 215, 0, 0.7));
+            }
+            100% { 
+                stroke-dashoffset: 50.3;
+                filter: drop-shadow(0 0 15px rgba(255, 215, 0, 0.9));
+            }
+        }
+
+        .description-text {
+            font-family: 'Instrument Sans', sans-serif;
+            color: #1a1a1a;
+            font-size: 0.85rem;
+            margin-left: 20px;
+            max-width: 280px;
+            line-height: 1.4;
+            opacity: 0.8;
+            z-index: 4;
+            position: relative;
+        }
+
+        .right-section {
+            flex: 1;
+            background: #f8f9fa;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 40px;
+        }
+
+        .signup-container {
+            width: 100%;
+            max-width: 380px;
+        }
+
+        .signup-title {
+            font-family: 'Fjalla One', sans-serif;
+            font-size: 2.5rem;
+            font-weight: 400;
+            color: #1a1a1a;
+            margin-bottom: 35px;
+            letter-spacing: -0.01em;
+            text-align: center;
+        }
+
+        .form-group {
+            margin-bottom: 28px;
+        }
+
+        .form-row {
+            display: flex;
+            gap: 15px;
+        }
+
+        .form-row .form-group {
+            flex: 1;
+        }
+
+        .form-label {
+            display: block;
+            margin-bottom: 10px;
+            color: #1a1a1a;
+            font-size: 0.9rem;
+            font-weight: 500;
+            font-family: 'Instrument Sans', sans-serif;
+        }
+
+        .form-input {
+            width: 100%;
+            padding: 16px 18px;
+            border: 2px solid #e9ecef;
+            border-radius: 6px;
+            font-size: 0.9rem;
+            font-family: 'Instrument Sans', sans-serif;
+            background-color: #ffffff;
+            transition: border-color 0.2s ease;
+        }
+
+        .form-input:focus {
+            outline: none;
+            border-color: #6c9bd1;
+        }
+
+        .form-input::placeholder {
+            color: #adb5bd;
+            font-size: 0.9rem;
+            font-weight: 400;
+        }
+
+        .password-container {
+            position: relative;
+        }
+
+        .password-toggle {
+            position: absolute;
+            right: 18px;
+            top: 50%;
+            transform: translateY(-50%);
+            background: none;
+            border: none;
+            cursor: pointer;
+            padding: 4px;
+            width: 24px;
+            height: 24px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .password-toggle:hover {
+            opacity: 0.7;
+        }
+
+        .eye-icon {
+            width: 20px;
+            height: 20px;
+        }
+
+        .eye-open {
+            display: block;
+        }
+
+        .eye-closed {
+            display: none;
+        }
+
+        .checkbox-group {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 25px;
+            gap: 10px;
+        }
+
+        .checkbox-input {
+            margin-top: 2px;
+        }
+
+        .checkbox-label {
+            font-size: 0.85rem;
+            color: #6c757d;
+            line-height: 1.4;
+            font-family: 'Instrument Sans', sans-serif;
+        }
+
+        .checkbox-label a {
+            color: #495057;
+            text-decoration: none;
+            font-weight: 500;
+        }
+
+        .signup-button {
+            width: 100%;
+            padding: 18px;
+            background: #F2E5AB;
+            color: #1a1a1a;
+            border: none;
+            border-radius: 6px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            font-family: 'Instrument Sans', sans-serif;
+            cursor: pointer;
+            margin-top: 20px;
+            transition: all 0.2s ease;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .signup-button:hover {
+            background: #f7d117;
+            transform: translateY(-1px);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+        }
+
+        .signup-button:active {
+            background: #f5cf12;
+            transform: translateY(0);
+        }
+
+        @media (max-width: 768px) {
+            body {
+                flex-direction: column;
+            }
+            
+            .left-section {
+                flex: none;
+                height: auto;
+                padding: 30px 20px;
+                align-items: center;
+                justify-content: flex-start;
+            }
+            
+            .company-title {
+                font-size: 2.2rem;
+                margin-bottom: 40px;
+                text-align: center;
+            }
+            
+            .car-display-wrapper {
+                width: 250px;
+                height: 200px;
+                margin-left: 0;
+                margin-top: 20px;
+                margin-bottom: 20px;
+            }
+
+            .car-container {
+                width: 240px;
+                height: 150px;
+            }
+
+            .halo-svg {
+                width: 300px;
+                height: 300px;
+            }
+
+            .description-text {
+                margin-left: 0;
+                text-align: center;
+                max-width: 90%;
+            }
+            
+            .right-section {
+                flex: none;
+                padding: 30px 20px;
+            }
+            
+            .signup-title {
+                font-size: 2rem;
+            }
+
+            .form-row {
+                flex-direction: column;
+                gap: 0;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="left-section">
+        <h1 class="company-title">Nard's Vehicle<br>Maintenance Services</h1>
+        
+        <div class="car-display-wrapper">
+            <div style="width: 350px; height: 200px; display: flex; align-items: center; justify-content: center; z-index: 2; position: relative;">
+                <img src="car-image.png" alt="Car" class="car-image">
+            </div>
+            
+            <svg class="halo-svg" viewBox="0 0 200 200">
+                <path class="halo-track" d="M 30 100 A 70 70 0 0 1 170 100" />
+                <path class="halo-progress" d="M 30 100 A 70 70 0 0 1 170 100" />
+            </svg>
+        </div>
+    </div>
+    
+    <div class="right-section">
+        <div class="signup-container">
+            <h2 class="signup-title">Sign up</h2>
+            
+            <form>
+                <div class="form-group">
+                    <label for="fullName" class="form-label">Full Name *</label>
+                    <input type="text" id="fullName" name="fullName" class="form-input" placeholder="Enter your name" required>
+                </div>
+                
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="mobile" class="form-label">Mobile Number *</label>
+                        <input type="tel" id="mobile" name="mobile" class="form-input" placeholder="Enter your phone number" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="email" class="form-label">Email Address*</label>
+                        <input type="email" id="email" name="email" class="form-input" placeholder="....@⁦gmail.com⁩" required>
+                    </div>
+                </div>
+                
+                <div class="form-group">
+                    <label for="password" class="form-label">Password *</label>
+                    <div class="password-container">
+                        <input type="password" id="password" name="password" class="form-input" placeholder="Enter your password" required>
+                        <button type="button" class="password-toggle" onclick="togglePassword('password')">
+                            <svg class="eye-icon eye-open" id="eyeOpen" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path>
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"></path>
+                            </svg>
+                            <svg class="eye-icon eye-closed" id="eyeClosed" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13.875 18.825A10.05 10.05 0 0112 19c-4.478 0-8.268-2.943-9.543-7a9.97 9.97 0 011.563-3.029m5.858.908a3 3 0 114.243 4.243M9.878 9.878l4.242 4.242M9.878 9.878L3 3m6.878 6.878L21 21"></path>
+                            </svg>
+                        </button>
+                    </div>
+                </div>
+                
+                <div class="form-group">
+                    <label for="confirmPassword" class="form-label">Confirm Password *</label>
+                    <div class="password-container">
+                        <input type="password" id="confirmPassword" name="confirmPassword" class="form-input" placeholder="Confirm your password" required>
+                        <button type="button" class="password-toggle" onclick="togglePassword('confirmPassword')">
+                            <svg class="eye-icon eye-open" id="eyeOpen2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path>
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"></path>
+                            </svg>
+                            <svg class="eye-icon eye-closed" id="eyeClosed2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13.875 18.825A10.05 10.05 0 0112 19c-4.478 0-8.268-2.943-9.543-7a9.97 9.97 0 011.563-3.029m5.858.908a3 3 0 114.243 4.243M9.878 9.878l4.242 4.242M9.878 9.878L3 3m6.878 6.878L21 21"></path>
+                            </svg>
+                        </button>
+                    </div>
+                </div>
+                
+                <div class="checkbox-group">
+                    <input type="checkbox" id="terms" name="terms" class="checkbox-input" required>
+                    <label for="terms" class="checkbox-label">
+                        I accept the <a href="#">terms and conditions</a>
+                    </label>
+                </div>
+                
+                <button type="submit" class="signup-button">Sign Up</button>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        function togglePassword(fieldId) {
+            const passwordField = document.getElementById(fieldId);
+            const eyeOpen = document.getElementById(fieldId === 'password' ? 'eyeOpen' : 'eyeOpen2');
+            const eyeClosed = document.getElementById(fieldId === 'password' ? 'eyeClosed' : 'eyeClosed2');
+            
+            if (passwordField.type === 'password') {
+                passwordField.type = 'text';
+                eyeOpen.style.display = 'none';
+                eyeClosed.style.display = 'block';
+            } else {
+                passwordField.type = 'password';
+                eyeOpen.style.display = 'block';
+                eyeClosed.style.display = 'none';
+            }
+        }
+
+        document.querySelector('form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const password = document.getElementById('password').value;
+            const confirmPassword = document.getElementById('confirmPassword').value;
+            
+            if (password !== confirmPassword) {
+                alert('Passwords do not match!');
+                return;
+            }
+            
+            alert('Sign up successful!');
+        });
+    </script>
+</body>
+</html>

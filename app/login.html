@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nard's Vehicle Maintenance Services - Login</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fjalla+One&family=Instrument+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Instrument Sans', sans-serif;
+            height: 100vh;
+            display: flex;
+            background-color: #f8f9fa; 
+        }
+
+        .left-section {
+            flex: 1;
+            background: linear-gradient(135deg, #e1f5fe 0%, #b3e5fc 20%, #81d4fa 40%, #4fc3f7 60%, #29b6f6 80%, #0288d1 100%);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: flex-start;
+            padding: 60px 80px;
+            position: relative;
+            overflow: hidden; 
+        }
+
+        .left-section::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 100px; 
+            height: 100%;
+            background: linear-gradient(90deg, rgba(255,255,255,0) 0%, rgba(255,255,255,0.05) 50%, rgba(255,255,255,0.1) 100%);
+            z-index: 3; 
+            pointer-events: none;
+        }
+
+        .company-title {
+            font-family: 'Fjalla One', sans-serif;
+            color: #1a1a1a;
+            font-size: 3.2rem;
+            font-weight: 400;
+            margin-bottom: 80px; 
+            text-align: left;
+            line-height: 0.95;
+            letter-spacing: -0.02em;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+            z-index: 4;
+            position: relative;
+        }
+
+        .car-image {
+            width: 350px; 
+            height: auto;
+            margin-left: 20px; 
+            filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.1)); 
+            z-index: 2; 
+            position: relative; 
+        }
+
+        .right-section {
+            flex: 1;
+            background: #f8f9fa;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 40px;
+        }
+
+        .login-container {
+            width: 100%;
+            max-width: 380px;
+        }
+
+        .login-title {
+            font-family: 'Fjalla One', sans-serif;
+            font-size: 2.5rem;
+            font-weight: 400;
+            color: #1a1a1a;
+            margin-bottom: 12px;
+            letter-spacing: -0.01em;
+            text-align: center;
+        }
+
+        .login-subtitle {
+            font-family: 'Instrument Sans', sans-serif;
+            color: #6c757d;
+            margin-bottom: 45px;
+            font-size: 0.95rem;
+            font-weight: 400;
+            text-align: center;
+        }
+
+        .login-subtitle a {
+            color: #495057;
+            text-decoration: none;
+            font-weight: 500;
+        }
+
+        .form-group {
+            margin-bottom: 28px;
+        }
+
+        .form-label {
+            display: block;
+            margin-bottom: 10px;
+            color: #1a1a1a;
+            font-size: 0.9rem;
+            font-weight: 500;
+            font-family: 'Instrument Sans', sans-serif;
+        }
+
+        .form-input {
+            width: 100%;
+            padding: 16px 18px;
+            border: 2px solid #e9ecef;
+            border-radius: 6px;
+            font-size: 0.9rem;
+            font-family: 'Instrument Sans', sans-serif;
+            background-color: #ffffff;
+            transition: border-color 0.2s ease;
+        }
+
+        .form-input:focus {
+            outline: none;
+            border-color: #6c9bd1;
+        }
+
+        .form-input::placeholder {
+            color: #adb5bd;
+            font-size: 0.9rem;
+            font-weight: 400;
+        }
+
+        .password-container {
+            position: relative;
+        }
+
+        .password-toggle {
+            position: absolute;
+            right: 18px;
+            top: 50%;
+            transform: translateY(-50%);
+            background: none;
+            border: none;
+            cursor: pointer;
+            padding: 4px;
+            width: 24px;
+            height: 24px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .password-toggle:hover {
+            opacity: 0.7;
+        }
+
+        .eye-icon {
+            width: 20px;
+            height: 20px;
+            stroke: #6c757d; 
+        }
+
+        .eye-open {
+            display: block;
+        }
+
+        .eye-closed {
+            display: none;
+        }
+
+        .login-button {
+            width: 100%;
+            padding: 18px;
+            background: #F2E5AB;
+            color: #1a1a1a;
+            border: none;
+            border-radius: 6px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            font-family: 'Instrument Sans', sans-serif;
+            cursor: pointer;
+            margin-top: 20px;
+            transition: all 0.2s ease;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .login-button:hover {
+            background: #f7d117;
+            transform: translateY(-1px);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+        }
+
+        .login-button:active {
+            background: #f5cf12;
+            transform: translateY(0);
+        }
+
+        @media (max-width: 768px) {
+            body {
+                flex-direction: column;
+            }
+            
+            .left-section {
+                flex: none;
+                height: auto;
+                padding: 30px 20px;
+                align-items: center;
+                justify-content: flex-start;
+            }
+            
+            .company-title {
+                font-size: 2.2rem;
+                margin-bottom: 40px;
+                text-align: center;
+            }
+            
+            .car-image {
+                width: 250px; 
+                margin-left: 0;
+                margin-top: 20px; 
+                margin-bottom: 20px; 
+            }
+            
+            .right-section {
+                flex: none;
+                padding: 30px 20px;
+            }
+            
+            .login-title {
+                font-size: 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="left-section">
+        <h1 class="company-title">Nard's Vehicle<br>Maintenance Services</h1>
+        
+        <img src="car-image.png" alt="White Audi Car" class="car-image">
+        
+    </div>
+    
+    <div class="right-section">
+        <div class="login-container">
+            <h2 class="login-title">Log in</h2>
+            <p class="login-subtitle">Not a member? <a href="#">Sign up now</a></p>
+            
+            <form>
+                <div class="form-group">
+                    <label for="email" class="form-label">Email Address*</label>
+                    <input type="email" id="email" name="email" class="form-input" placeholder="Enter your email address" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="password" class="form-label">Password *</label>
+                    <div class="password-container">
+                        <input type="password" id="password" name="password" class="form-input" placeholder="Enter your password" required>
+                        <button type="button" class="password-toggle" onclick="togglePassword('password')">
+                            <svg class="eye-icon eye-open" id="eyeOpen" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path>
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"></path>
+                            </svg>
+                            <svg class="eye-icon eye-closed" id="eyeClosed" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13.875 18.825A10.05 10.05 0 0112 19c-4.478 0-8.268-2.943-9.543-7a9.97 9.97 0 011.563-3.029m5.858.908a3 3 0 114.243 4.243M9.878 9.878l4.242 4.242M9.878 9.878L3 3m6.878 6.878L21 21"></path>
+                            </svg>
+                        </button>
+                    </div>
+                </div>
+                
+                <button type="submit" class="login-button">Log in</button>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        function togglePassword(fieldId) {
+            const passwordField = document.getElementById(fieldId);
+            const eyeOpen = document.getElementById('eyeOpen');
+            const eyeClosed = document.getElementById('eyeClosed');
+            
+            if (passwordField.type === 'password') {
+                passwordField.type = 'text';
+                eyeOpen.style.display = 'none';
+                eyeClosed.style.display = 'block';
+            } else {
+                passwordField.type = 'password';
+                eyeOpen.style.display = 'block';
+                eyeClosed.style.display = 'none';
+            }
+        }
+
+        document.querySelector('form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            alert('Login attempt submitted!'); 
+        });
+    </script>
+</body>
+</html>
