@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -159,3 +160,1398 @@
     </script>
 </body>
 </html>
+=======
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nard's Vehicle Maintenance Service</title>
+     <link rel="stylesheet" href="booking.html">
+    <style>
+        * {
+            padding: 0px;
+            margin: 0px;
+        }
+
+        body {
+            font-family: 'Fira Sans', Arial, sans-serif;
+            line-height: 1.6;
+            color: #333;
+        }
+
+        /* Header Section */
+        header {
+            background: linear-gradient(135deg, #E8B931 0%, #F3C734 100%);
+            padding: 15px 0;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        .header-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 20px;
+        }
+
+        .logo {
+            width: 80px;
+            height: 50px;
+            background: linear-gradient(135deg, #C8AD4A 0%, #D4B84A 100%);
+            border-radius: 4px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            position: relative;
+        }
+        
+        .logo::before {
+            content: '';
+            position: absolute;
+            top: 8px;
+            left: 8px;
+            right: 8px;
+            bottom: 8px;
+            border: 2px solid rgba(255,255,255,0.3);
+            border-radius: 2px;
+        }
+
+        .contact-info {
+            display: flex;
+            align-items: center;
+            gap: 40px;
+            font-size: 0.9rem;
+            color: #2c2c2c;
+            font-weight: 500;
+        }
+
+        .contact-info span {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            white-space: nowrap;
+        }
+
+        /* Navigation */
+        .nav-container {
+            background: white;
+            border-top: 1px solid #E8B931;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.08);
+            position: relative;
+        }
+
+        .nav-menu {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 20px;
+        }
+
+        .nav-links {
+            display: flex;
+            align-items: center;
+            position: relative;
+        }
+
+        .nav-item {
+            position: relative;
+        }
+
+        .nav-menu a {
+            text-decoration: none;
+            color: #2c2c2c;
+            padding: 18px 25px;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            position: relative;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .nav-menu a:hover {
+            color: #E8B931;
+        }
+
+        .nav-menu a.active {
+            color: #E8B931;
+            font-weight: 600;
+        }
+
+        .dropdown-arrow {
+            font-size: 0.8rem;
+            transition: transform 0.3s ease;
+        }
+
+        .nav-item:hover .dropdown-arrow {
+            transform: rotate(180deg);
+        }
+
+        /* Dropdown Styles */
+        .dropdown {
+            position: absolute;
+            top: 100%;
+            left: 0;
+            background: white;
+            border: 1px solid #E8B931;
+            border-radius: 8px;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(-10px);
+            transition: all 0.3s ease;
+            z-index: 1000;
+            min-width: 280px;
+            padding: 15px 0;
+        }
+
+        .nav-item:hover .dropdown {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+
+        .dropdown-content {
+            padding: 10px 0;
+        }
+
+        .dropdown-section {
+            margin-bottom: 15px;
+        }
+
+        .dropdown-section:last-child {
+            margin-bottom: 0;
+        }
+
+        .dropdown-title {
+            font-size: 0.9rem;
+            font-weight: 600;
+            color: #E8B931;
+            padding: 8px 20px;
+            border-bottom: 1px solid #f0f0f0;
+            margin-bottom: 10px;
+        }
+
+        .dropdown a {
+            display: block;
+            color: #555;
+            padding: 8px 20px;
+            text-decoration: none;
+            font-size: 0.9rem;
+            transition: all 0.3s ease;
+            border-left: 3px solid transparent;
+        }
+
+        .dropdown a:hover {
+            background: #f8f4e6;
+            color: #E8B931;
+            border-left-color: #E8B931;
+        }
+
+        .book-service-btn {
+            background: linear-gradient(135deg, #E8B931 0%, #F3C734 100%);
+            color: white;
+            padding: 12px 28px;
+            border: none;
+            border-radius: 4px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            box-shadow: 0 2px 8px rgba(232, 185, 49, 0.3);
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .book-service-btn:hover {
+            background: linear-gradient(135deg, #D4A52A 0%, #E8B931 100%);
+            transform: translateY(-1px);
+            box-shadow: 0 4px 12px rgba(232, 185, 49, 0.4);
+        }
+
+        .welcome-section {
+            display: flex;
+            min-height: 100vh;
+            align-items: center;
+        }
+
+        .content-container {
+            display: flex;
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .text-content {
+            flex: 1;
+            padding-right: 60px;
+        }
+
+        .text-content h1 {
+            font-family: 'Fjalla One', sans-serif;
+            font-size: 2.5rem;
+            font-weight: bold;
+            color: #2c2c2c;
+            margin-bottom: 30px;
+            line-height: 1.2;
+        }
+
+        .text-content p {
+            font-size: 1rem;
+            color: #555;
+            margin-bottom: 20px;
+            line-height: 1.7;
+        }
+
+        .text-content p:last-child {
+            margin-bottom: 0;
+        }
+
+        .visual-element {
+            flex: 0 0 250px;
+            height: 300px;
+            background: linear-gradient(135deg, #d73527 0%, #b8251a 100%);
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(215, 53, 39, 0.3);
+        }
+
+        /* RELIABLE PARTNER SECTION */
+        .reliable-partner-section {
+            background-color: #f8f4e6;
+            padding: 80px 20px;
+        }
+
+        .reliable-partner-container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .partner-header {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+
+        .partner-header h2 {
+            font-family: 'Fjalla One', sans-serif;
+            font-size: 2.2rem;
+            color: #2c2c2c;
+            margin-bottom: 20px;
+            line-height: 1.2;
+            text-transform: uppercase;
+        }
+
+        .partner-content {
+            display: flex;
+            flex-direction: column;
+            gap: 60px;
+        }
+
+        .feature-section {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+            align-items: center;
+            position: relative;
+        }
+
+        .feature-section.reverse {
+            grid-template-columns: 1fr 1fr;
+        }
+
+        .feature-section.reverse .feature-content {
+            order: 2;
+        }
+
+        .feature-section.reverse .feature-image {
+            order: 1;
+        }
+
+        .feature-image {
+            width: 100%;
+            height: 250px;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.1);
+        }
+
+        .feature-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .feature-content {
+            padding: 20px;
+        }
+
+        .feature-content h3 {
+            font-size: 1.3rem;
+            color: #2c2c2c;
+            margin-bottom: 15px;
+            font-weight: 600;
+            line-height: 1.3;
+        }
+
+        .feature-content h4 {
+            font-size: 1.2rem;
+            color: #2c2c2c;
+            margin-bottom: 15px;
+            font-weight: 600;
+            line-height: 1.3;
+        }
+
+        .feature-content p {
+            font-size: 0.95rem;
+            color: #666;
+            line-height: 1.6;
+        }
+
+        .filipino-text-section {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+            align-items: center;
+            margin: 40px 0;
+        }
+
+        .filipino-text-large {
+            font-size: 3rem;
+            color: #999;
+            font-weight: 300;
+            line-height: 1.2;
+            text-align: center;
+            opacity: 0.7;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .filipino-text-large img {
+            width: 60%;
+            height: auto;
+            max-width: 200px;
+            border-radius: 10px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        }
+
+        .filipino-content {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .filipino-content h4 {
+            font-size: 1.2rem;
+            color: #2c2c2c;
+            font-weight: 600;
+            margin-bottom: 10px;
+        }
+
+        .filipino-content p {
+            font-size: 0.95rem;
+            color: #666;
+            line-height: 1.6;
+        }
+
+        /*REVIEWS SECTION*/
+        .reviews-section {
+            background-color: #f5f5f5;
+            padding: 80px 20px;
+        }
+
+        .reviews-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .reviews-header h2 {
+            font-family: 'Fjalla One', sans-serif;
+            font-size: 2.2rem;
+            color: #2c2c2c;
+            margin-bottom: 50px;
+        }
+
+        .reviews-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 30px;
+            margin-bottom: 50px;
+        }
+
+        .review-card {
+            background: white;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+            text-align: left;
+        }
+
+        .review-text {
+            font-style: italic;
+            color: #555;
+            margin-bottom: 20px;
+            line-height: 1.6;
+        }
+
+        .review-author-section {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .profile-icon {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background-color: #d73527;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: bold;
+            font-size: 1.2rem;
+            flex-shrink: 0;
+        }
+
+        .review-author {
+            font-weight: 600;
+            color: #2c2c2c;
+            margin-bottom: 5px;
+        }
+
+        .review-service {
+            color: #d73527;
+            font-size: 0.9rem;
+        }
+
+        .stars {
+            color: #ffd700;
+            font-size: 1.2rem;
+            margin-bottom: 15px;
+        }
+
+        .reviews-cta {
+            background-color: #E8B931;
+            color: black;
+            padding: 15px 30px;
+            border: none;
+            border-radius: 25px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .reviews-cta:hover {
+            background-color: #ffe590;
+        }
+
+        @media (max-width: 768px) {
+            .content-container {
+                flex-direction: column;
+                padding: 40px 20px;
+            }
+
+            .text-content {
+                padding-right: 0;
+                margin-bottom: 40px;
+            }
+
+            .text-content h1 {
+                font-size: 2rem;
+            }
+
+            .visual-element {
+                flex: none;
+                width: 100%;
+                height: 250px;
+            }
+
+            .welcome-section {
+                min-height: auto;
+            }
+
+            .feature-section {
+                grid-template-columns: 1fr;
+                gap: 30px;
+            }
+
+            .feature-section.reverse .feature-content {
+                order: 1;
+            }
+
+            .feature-section.reverse .feature-image {
+                order: 2;
+            }
+
+            .filipino-text-section {
+                grid-template-columns: 1fr;
+                gap: 30px;
+                text-align: center;
+            }
+
+            .filipino-text-large {
+                font-size: 2rem;
+            }
+
+            .filipino-text-large img {
+                width: 50%;
+                max-width: 150px;
+            }
+
+            .reviews-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .text-content h1 {
+                font-size: 1.75rem;
+            }
+
+            .text-content p {
+                font-size: 0.95rem;
+            }
+
+            .filipino-text-large {
+                font-size: 1.5rem;
+            }
+
+            .filipino-text-large img {
+                width: 40%;
+                max-width: 120px;
+            }
+        }
+
+         /* Footer */
+        footer {
+            background: linear-gradient(135deg, #C8AD4A 0%, #D4B84A 100%);
+            padding: 50px 20px 20px;
+            color: #2c2c2c;
+        }
+
+        .footer-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+        }
+
+        .footer-section h4 {
+            color: #2c2c2c;
+            margin-bottom: 20px;
+            font-size: 1.2rem;
+            font-weight: 700;
+        }
+
+        .footer-section p, .footer-section a {
+            color: #444;
+            font-size: 0.95rem;
+            line-height: 1.8;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .footer-section a:hover {
+            color: #2c2c2c;
+        }
+
+        .footer-bottom {
+            text-align: center;
+            margin-top: 40px;
+            padding-top: 25px;
+            border-top: 2px solid #E8B931;
+            color: #555;
+            font-size: 0.9rem;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .header-container {
+                flex-direction: column;
+                gap: 15px;
+            }
+
+            .contact-info {
+                flex-direction: column;
+                gap: 10px;
+                text-align: center;
+            }
+
+            .nav-menu {
+                flex-direction: column;
+                gap: 10px;
+                padding: 15px 20px;
+            }
+
+            .nav-links {
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+
+            .nav-menu a {
+                padding: 12px 18px;
+            }
+
+            .dropdown {
+                position: static;
+                opacity: 1;
+                visibility: visible;
+                transform: none;
+                box-shadow: none;
+                border: none;
+                border-radius: 0;
+                display: none;
+            }
+
+            .nav-item.mobile-active .dropdown {
+                display: block;
+            }
+
+            .hero-section h1 {
+                font-size: 2.8rem;
+            }
+
+            .services-grid {
+                grid-template-columns: 1fr;
+                gap: 25px;
+            }
+
+            .booking-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .booking-btn {
+                width: 100%;
+                max-width: 300px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .hero-section h1 {
+                font-size: 2.2rem;
+            }
+
+            .hero-description {
+                font-size: 1rem;
+            }
+
+            .service-content {
+                padding: 25px;
+            }
+
+            .book-service-section h2 {
+                font-size: 2.2rem;
+            }
+
+            .services-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /*added css*/
+        /* Modal Overlay */
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.3s ease;
+}
+
+.modal-overlay.active {
+    opacity: 1;
+    visibility: visible;
+}
+
+/* Modal Container */
+.modal-container {
+    background: white;
+    border-radius: 20px;
+    width: 90%;
+    max-width: 480px;
+    max-height: 90vh;
+    overflow: hidden;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+    transform: scale(0.9) translateY(20px);
+    transition: all 0.3s ease;
+}
+
+.modal-overlay.active .modal-container {
+    transform: scale(1) translateY(0);
+}
+
+/* Modal Header */
+.modal-header {
+    padding: 24px 24px 0;
+    position: relative;
+}
+
+.modal-title {
+    font-size: 24px;
+    font-weight: 700;
+    color: #1a1a1a;
+    margin-bottom: 8px;
+}
+
+.modal-subtitle {
+    font-size: 14px;
+    color: #666;
+    margin-bottom: 20px;
+}
+
+.close-btn {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    background: none;
+    border: none;
+    font-size: 24px;
+    color: #666;
+    cursor: pointer;
+    width: 32px;
+    height: 32px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    transition: all 0.2s ease;
+}
+
+.close-btn:hover {
+    background: #f0f0f0;
+    color: #333;
+}
+
+/* Progress Bar */
+.progress-bar {
+    height: 3px;
+    background: #e0e0e0;
+    border-radius: 2px;
+    overflow: hidden;
+    margin-bottom: 24px;
+}
+
+.progress-fill {
+    height: 100%;
+    background: linear-gradient(90deg, #4CAF50, #45a049);
+    width: 0%;
+    transition: width 0.3s ease;
+}
+
+/* Modal Content */
+.modal-content {
+    padding: 0 24px;
+    max-height: 60vh;
+    overflow-y: auto;
+}
+
+.section-title {
+    font-size: 16px;
+    font-weight: 600;
+    color: #333;
+    margin-bottom: 16px;
+}
+
+.quick-option {
+    display: flex;
+    align-items: center;
+    padding: 12px 16px;
+    margin-bottom: 8px;
+    background: #fff;
+    border: 1px solid #e0e0e0;
+    border-radius: 12px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    gap: 12px;
+}
+
+.quick-option:hover {
+    background: #f8f9fa;
+    border-color: #c0c0c0;
+}
+
+.quick-option.selected {
+    background: #f0f8ff;
+    border-color: #4CAF50;
+    box-shadow: 0 0 0 2px rgba(76, 175, 80, 0.1);
+}
+
+.option-icon {
+    width: 32px;
+    height: 32px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 18px;
+    border-radius: 8px;
+    flex-shrink: 0;
+}
+
+.option-content {
+    flex: 1;
+}
+
+.option-title {
+    font-size: 15px;
+    font-weight: 600;
+    color: #1a1a1a;
+    margin-bottom: 2px;
+}
+
+.option-description {
+    font-size: 13px;
+    color: #666;
+    line-height: 1.3;
+}
+
+.checkbox {
+    width: 20px;
+    height: 20px;
+    border: 2px solid #ddd;
+    border-radius: 4px;
+    margin-left: auto;
+    position: relative;
+    transition: all 0.2s ease;
+}
+
+.quick-option.selected .checkbox {
+    background: #4CAF50;
+    border-color: #4CAF50;
+}
+
+.quick-option.selected .checkbox::after {
+    content: '✓';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: white;
+    font-size: 12px;
+    font-weight: bold;
+}
+
+/* Modal Footer */
+.modal-footer {
+    padding: 20px 24px 24px;
+    display: flex;
+    gap: 12px;
+}
+
+.btn {
+    flex: 1;
+    padding: 14px 20px;
+    border: none;
+    border-radius: 10px;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.btn-secondary {
+    background: #f0f0f0;
+    color: #666;
+}
+
+.btn-secondary:hover {
+    background: #e0e0e0;
+}
+
+.btn-primary {
+    background: linear-gradient(135deg, #FFF200 0%, #FFD700 100%);
+    color: #333;
+    box-shadow: 0 4px 12px rgba(255, 215, 0, 0.3);
+}
+
+.btn-primary:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 6px 16px rgba(255, 215, 0, 0.4);
+}
+
+/* Responsive */
+@media (max-width: 480px) {
+    .modal-container {
+        width: 95%;
+        margin: 10px;
+    }
+    
+    .modal-header {
+        padding: 20px 20px 0;
+    }
+    
+    .modal-content {
+        padding: 0 20px;
+    }
+    
+    .modal-footer {
+        padding: 20px;
+    }
+}
+
+    </style>
+</head>
+<body>
+    <!--TODO: Header - Gian-->
+    <header>
+    <div class="header-container">
+        <div class="logo"></div>
+        <div class="contact-info">
+            <span>📞 0956-214-6595</span>
+            <span>🕒 Mon - Sat: 8:00 am - 6:00 pm</span>
+        </div>
+    </div>
+</header>
+
+<!-- navigation section -->
+<nav class="nav-container">
+    <div class="nav-menu">
+        <div class="nav-links">
+            <a href="index.html" class="active">Home</a>
+            <a href="services.html">Services</a>
+            <div class="nav-item">
+                    <a href="#vehicles">Vehicles <span class="dropdown-arrow">▼</span></a>
+                    <div class="dropdown">
+                        <div class="dropdown-content">
+                            <div class="dropdown-section">
+                                <div class="dropdown-title">Vehicle Types</div>
+                                <a href="#light-vehicles">Light Vehicles</a>
+                                <a href="#heavy-vehicles">Heavy Vehicles</a>
+                                <a href="#diesel-vehicles">Diesel Vehicles</a>
+                                <a href="#gasoline-vehicles">Gasoline Vehicles</a>
+                                <a href="#commercial-vehicles">Commercial Vehicles</a>
+                                <a href="#personal-vehicles">Personal Vehicles</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="nav-item">
+                    <a href="index.html#about">About <span class="dropdown-arrow">▼</span></a>
+                    <div class="dropdown">
+                        <div class="dropdown-content">
+                            <div class="dropdown-section">
+                                <a href="#about-us">About Us</a>
+                                <a href="#faqs">FAQs</a>
+                                <a href="#contact">Contact Us</a>
+                                <a href="#testimonials">Testimonials</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <a href="#location">Location</a>
+                <a href="#reviews">Reviews</a>
+            </div>
+            <button class="book-service-btn" onclick="NardsModal.open()">Book Service</button>
+        </div>
+    </nav>
+
+
+    <!--TODO: Carousel/Image Gallery - Gian-->
+    <section>
+
+    </section>
+
+    <!--TODO: 'Welcome' Section - Aaliyah-->
+    <section class="welcome-section">
+        <div class="content-container">
+            <div class="text-content">
+                <h1>Welcome to Nard's Vehicle Maintenance Services</h1>
+                <p>Your vehicle deserves the best care — and that's exactly what we deliver. At Nard's Vehicle Maintenance Service, we're all about keeping your car running smoothly and safely. Whether it's regular maintenance or a quick fix, you can count on our team for honest, reliable service every time. We take pride in what we do and treat every vehicle like it's our own — because your safety and satisfaction matter most.</p>
+                <p>Drop by or give us a call — we're here to help you get back on the road, hassle-free.</p>
+            </div>
+            <div class="visual-element"></div>
+        </div>
+    </section>
+
+    <!--TODO: 'Our Service' Section - Gian-->
+    <section>
+
+    </section>
+
+    <!--TODO: 'Your Reliable Partner' Section - Aaliyah-->
+    <section class="reliable-partner-section">
+        <div class="reliable-partner-container">
+            <div class="partner-header">
+                <h2>YOUR RELIABLE PARTNER FOR QUALITY CAR CARE</h2>
+            </div>
+            
+            <div class="partner-content">
+                <!-- Row 1 -->
+                <div class="filipino-text-section">
+                    <div class="filipino-text-large">
+                        <img src="image1.png">
+                    </div>
+                    <div class="filipino-content">
+                        <h4>Get your vehicle serviced by trusted diesel experts.</h4>
+                        <p>We don't just repair — we understand your ride. Our technicians are highly experienced in diesel systems, fuel injection tech, and full engine diagnostics. We give honest advice, clear explanations, and quality service every time. Plus, we offer home services and roadside rescue around Metro Manila and Cavite.</p>                  
+                    </div>
+                </div>
+
+                <!-- Row 2 -->
+                <div class="filipino-text-section">
+                    <div class="filipino-content">
+                        <h4>Genuine parts, guaranteed performance.</h4>
+                        <p>We use only genuine parts backed by a 6-month warranty, so you can drive with confidence. Every service is done with attention to detail, ensuring your vehicle performs at its best and stays reliable on the road.</p>                   
+                    </div>
+                    <div class="filipino-text-large">
+                        <img src="image2.png">
+                    </div>
+                </div>
+
+                <!-- Row 3 -->
+                <div class="filipino-text-section">
+                    <div class="filipino-text-large">
+                        <img src="image3.png">
+                    </div>
+                    <div class="filipino-content">
+                        <h4>On-the-go services made easy.</h4>
+                        <p>Too busy to visit the shop? No problem. We bring expert care to you with our home service and mobile rescue service. Wherever you are in Cavite or Manila, we've got you covered.</p>
+                    </div>
+                </div>
+
+                <!-- Row 4 -->
+                <div class="filipino-text-section">
+                    <div class="filipino-content">
+                        <h4>Customer satisfaction comes first.</h4>
+                        <p>At Nard's Vehicle Maintenance Service, we treat your car like it's our own. We aim for complete customer satisfaction by providing dependable service, fair pricing, and friendly support — earning the trust of countless loyal customers in the community.</p>                    
+                    </div>
+                    <div class="filipino-text-large">
+                        <img src="image4.png">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!--TODO: 'Our Location' Section - Gian-->
+    <section>
+
+    </section>
+
+    <!--TODO: Reviews Section - Aaliyah-->
+    <section class="reviews-section">
+        <div class="reviews-container">
+            <div class="reviews-header">
+                <h2>Reviews</h2>
+            </div>
+            
+            <div class="reviews-grid">
+                <div class="review-card">
+                    <div class="stars">★★★★★</div>
+                    <div class="review-text">
+                        "Super fast and reliable service! They rescued my car and had it running smoothly the same day."
+                    </div>
+                    <div class="review-author-section">
+                        <div class="profile-icon">Y</div>
+                        <div>
+                            <div class="review-author">Yvaine Aster</div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="review-card">
+                    <div class="stars">★★★★★</div>
+                    <div class="review-text">
+                        "They explained the problem clearly and charged a fair price. Highly recommended!"
+                    </div>
+                    <div class="review-author-section">
+                        <div class="profile-icon">Z</div>
+                        <div>
+                            <div class="review-author">Zaila Evyn</div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="review-card">
+                    <div class="stars">★★★★★</div>
+                    <div class="review-text">
+                        "The team was professional, friendly, and fixed my diesel engine without hassle."
+                    </div>
+                    <div class="review-author-section">
+                        <div class="profile-icon">M</div>
+                        <div>
+                            <div class="review-author">Maeve Xisten</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <button class="reviews-cta">Read more reviews</button>
+        </div>
+    </section>
+
+    <!--TODO: Footer - Gian-->
+    <!-- Footer -->
+    <footer>
+        <div class="footer-container">
+            <div class="footer-section">
+                <div class="logo" style="width: 80px; height: 50px; margin-bottom: 20px;"></div>
+                <p>0956-214-6595</p>
+                <p>B16 L6 Duhat St. San Miguel, 1 Subd. Molino 4, City of Bacoor, 4102 Cavite</p>
+                <p>Monday - Saturday: 8 AM-6 PM<br>Sunday: Closed</p>
+            </div>
+            <div class="footer-section">
+                <h4>Service</h4>
+                <p><a href="#">Engine Repair & Maintenance</a></p>
+                <p><a href="#">Transmission & Clutch Services</a></p>
+                <p><a href="#">Underchassis Repair</a></p>
+                <p><a href="#">Air System Maintenance</a></p>
+                <p><a href="#">Fuel System Repair</a></p>
+                <p><a href="#">Dismantling & Installation</a></p>
+                <p><a href="#">Diagnostic Scanner</a></p>
+            </div>
+            <div class="footer-section">
+                <h4>Quick Links</h4>
+                <p><a href="#">Home Service Booking</a></p>
+                <p><a href="#">Roadside Rescue Booking</a></p>
+                <p><a href="#">Contact Us</a></p>
+                <p><a href="#">About Us</a></p>
+                <p><a href="#">FAQs</a></p>
+                <p><a href="#">Reviews</a></p>
+            </div>
+            <div class="footer-section">
+                <h4>Legal</h4>
+                <p><a href="#">Privacy Policy</a></p>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>Copyright © 2025 All Rights Reserved.</p>
+        </div>
+    </footer>
+
+    <!--JavaScript goes here (if needed for functionality)-->
+    <script>
+
+    </script>
+    <!-- Modal -->
+<div class="modal-overlay" id="serviceModal">
+    <div class="modal-container">
+        <div class="modal-header">
+            <h2 class="modal-title">Nard's Service</h2>
+            <p class="modal-subtitle">Select all services that apply</p>
+            <button class="close-btn" onclick="NardsModal.close()">×</button>
+            
+            <div class="progress-bar">
+                <div class="progress-fill"></div>
+            </div>
+        </div>
+
+        <div class="modal-content">
+            <div class="section-title">Not sure what's wrong?</div>
+            
+            <div class="quick-option" onclick="NardsModal.toggleOption(this)">
+                <div class="option-icon">📝</div>
+                <div class="option-content">
+                    <div class="option-title">I'll describe what I need</div>
+                    <div class="option-description">Please note all concerns</div>
+                </div>
+                <div class="checkbox"></div>
+            </div>
+
+            <div class="section-title" style="margin-top: 24px;">Instant Booking</div>
+
+            <div class="quick-option" onclick="NardsModal.toggleOption(this)">
+                <div class="option-icon">🔧</div>
+                <div class="option-content">
+                    <div class="option-title">Engine Service</div>
+                    <div class="option-description">Engine tune-up, diagnostics, or repair needed</div>
+                </div>
+                <div class="checkbox"></div>
+            </div>
+
+            <div class="quick-option" onclick="NardsModal.toggleOption(this)">
+                <div class="option-icon">⚙️</div>
+                <div class="option-content">
+                    <div class="option-title">Transmission / Clutch Service</div>
+                    <div class="option-description">Issues with shifting or clutch</div>
+                </div>
+                <div class="checkbox"></div>
+            </div>
+
+            <div class="quick-option" onclick="NardsModal.toggleOption(this)">
+                <div class="option-icon">🚗</div>
+                <div class="option-content">
+                    <div class="option-title">Underchassis Repair</div>
+                    <div class="option-description">Suspension, steering, or underbody concerns</div>
+                </div>
+                <div class="checkbox"></div>
+            </div>
+
+            <div class="quick-option" onclick="NardsModal.toggleOption(this)">
+                <div class="option-icon">❄️</div>
+                <div class="option-content">
+                    <div class="option-title">Air System Service</div>
+                    <div class="option-description">A/C or ventilation issue</div>
+                </div>
+                <div class="checkbox"></div>
+            </div>
+
+            <div class="quick-option" onclick="NardsModal.toggleOption(this)">
+                <div class="option-icon">⛽</div>
+                <div class="option-content">
+                    <div class="option-title">Fuel System / Injection Service</div>
+                    <div class="option-description">Injection pump issues or fuel leak</div>
+                </div>
+                <div class="checkbox"></div>
+            </div>
+
+            <div class="quick-option" onclick="NardsModal.toggleOption(this)">
+                <div class="option-icon">🛒</div>
+                <div class="option-content">
+                    <div class="option-title">Parts Replacement & Installation</div>
+                    <div class="option-description">Genuine parts with warranty</div>
+                </div>
+                <div class="checkbox"></div>
+            </div>
+
+            <div class="quick-option" onclick="NardsModal.toggleOption(this)">
+                <div class="option-icon">🔒</div>
+                <div class="option-content">
+                    <div class="option-title">Periodic & Preventive Maintenance</div>
+                    <div class="option-description">Regular check-up and tune-up</div>
+                </div>
+                <div class="checkbox"></div>
+            </div>
+
+            <div class="quick-option" onclick="NardsModal.toggleOption(this)">
+                <div class="option-icon">🔍</div>
+                <div class="option-content">
+                    <div class="option-title">Used Vehicle Inspection</div>
+                    <div class="option-description">Before buying or selling</div>
+                </div>
+                <div class="checkbox"></div>
+            </div>
+
+            <div class="quick-option" onclick="NardsModal.toggleOption(this)">
+                <div class="option-icon">❓</div>
+                <div class="option-content">
+                    <div class="option-title">Other Concerns</div>
+                    <div class="option-description">Describe your issue</div>
+                </div>
+                <div class="checkbox"></div>
+            </div>
+        </div>
+
+        <div class="modal-footer">
+            <button class="btn btn-secondary" onclick="NardsModal.addNote()">Add note</button>
+            <button class="btn btn-primary" onclick="NardsModal.proceedBooking()">Next</button>
+        </div>
+    </div>
+</div>
+<script>
+// Nard's Modal Component
+const NardsModal = {
+    selectedServices: [],
+    
+    open() {
+        document.getElementById('serviceModal').classList.add('active');
+        document.body.style.overflow = 'hidden';
+    },
+
+    close() {
+        document.getElementById('serviceModal').classList.remove('active');
+        document.body.style.overflow = 'auto';
+    },
+
+    toggleOption(element) {
+        const isSelected = element.classList.contains('selected');
+        const optionTitle = element.querySelector('.option-title').textContent;
+        
+        if (isSelected) {
+            element.classList.remove('selected');
+            this.selectedServices = this.selectedServices.filter(service => service !== optionTitle);
+        } else {
+            element.classList.add('selected');
+            this.selectedServices.push(optionTitle);
+        }
+        
+        this.updateProgress();
+    },
+
+    updateProgress() {
+        const progressFill = document.querySelector('.progress-fill');
+        const percentage = Math.min((this.selectedServices.length / 10) * 100, 100);
+        progressFill.style.width = percentage + '%';
+    },
+
+    addNote() {
+        const event = new CustomEvent('addNoteRequested', {
+            detail: {
+                selectedServices: [...this.selectedServices]
+            }
+        });
+        document.dispatchEvent(event);
+    },
+
+    proceedBooking() {
+        if (this.selectedServices.length === 0) {
+            alert('Please select at least one service.');
+            return;
+        }
+        
+        const event = new CustomEvent('servicesSelected', {
+            detail: {
+                services: [...this.selectedServices],
+                timestamp: new Date().toISOString()
+            }
+        });
+        document.dispatchEvent(event);
+        
+        this.close();
+    },
+
+    reset() {
+        this.selectedServices = [];
+        document.querySelectorAll('.quick-option.selected').forEach(option => {
+            option.classList.remove('selected');
+        });
+        this.updateProgress();
+    }
+};
+
+// Event listeners for modal
+document.getElementById('serviceModal').addEventListener('click', function(e) {
+    if (e.target === this) {
+        NardsModal.close();
+    }
+});
+
+document.addEventListener('keydown', function(e) {
+    if (e.key === 'Escape') {
+        NardsModal.close();
+    }
+});
+
+// Example event listeners for integration
+document.addEventListener('servicesSelected', function(e) {
+    console.log('Services selected:', e.detail);
+    alert('Services selected: ' + e.detail.services.join(', '));
+});
+
+document.addEventListener('addNoteRequested', function(e) {
+    console.log('Add note requested for services:', e.detail);
+    alert('Add note functionality will be available soon!');
+});
+</script>
+
+</body>
+</html>
+>>>>>>> 5b012c1d3bbd59052ad377c75a53ba7bc5c7fdce
