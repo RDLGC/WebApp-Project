@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
     <head>
         <title>Nard's Vehicle Maintenance Services</title>
         <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -11,28 +11,28 @@
         <link rel="preconnect" href="https://fonts.googleapis.com">
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
         <link href="https://fonts.googleapis.com/css2?family=Instrument+Sans:ital,wght@0,400..700;1,400..700&display=swap" rel="stylesheet">
-        <link rel="stylesheet" href="styles/login-remake.css">
+        <link rel="stylesheet" href="../styles/login-remake.css">
     </head>
     <body>
         <div class="left-section">
             <h1 class="title">Nard's Vehicle Maintenance Services</h3>
-            <img src="images/login-car.png" alt="Car">
+            <img src="../images/login-car.png" alt="Car">
         </div>
         <div class="right-section">
             <div class="header-group">
                 <h3 class="header">Log in</h3>
-                <p class="sign-up-container">Not a member? <a class="sign-up-link" href="#">Sign up here!</a></p>
+                <p class="sign-up-container">Not a member? <a class="sign-up-link" href="signup-remake.html">Sign up here!</a></p>
             </div>
             <form class="user-input-group" action="#">
                 <div class="input-container">
                     <div>
                         <label class="email-label" for="email">E-mail Address</label>
-                        <input class="email-input" type="email" name="email" placeholder="Enter your email address">
+                        <input class="email-input" type="email" name="email" placeholder="Enter your email address" required>
                     </div>
                     <div>
                         <label class="password-label" for="password">Password</label>
                         <div class="password-wrapper">
-                            <input class="password-input" type="password" name="password" placeholder="Enter your password">
+                            <input class="password-input" type="password" name="password" placeholder="Enter your password" required>
                             <div class="password-functionality" onclick="showPassword()">
                                 <svg class="password-visible" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
                                     <path stroke-linecap="round" stroke-linejoin="round" d="M2.036 12.322a1.012 1.012 0 0 1 0-.639C3.423 7.51 7.36 4.5 12 4.5c4.638 0 8.573 3.007 9.963 7.178.07.207.07.431 0 .639C20.577 16.49 16.64 19.5 12 19.5c-4.638 0-8.573-3.007-9.963-7.178Z" />
@@ -45,17 +45,10 @@
                         </div>
                     </div>
                 </div>
-                <input class="login-button" type="submit" value="Log in">
+                <input class="login-button" type="submit" value="Log in" onclick="confirmLogin()">
             </form>
         </div>
 
-        <script>
-            function showPassword() {
-                let showPasswordIcon = document.querySelector(".password-visible");
-                let hidePasswordIcon = document.querySelector(".password-hidden");
-                showPasswordIcon.style.display = "block";
-                hidePasswordIcon.style.display = "hidden";
-            }
-        </script>
+        <script src="../scripts/userAuth.js"></script>
     </body>
 </html>

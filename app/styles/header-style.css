@@ -1,0 +1,194 @@
+* {
+    font-family: "Fjalla One", "Segoe UI", sans-serif;
+    box-sizing: border-box;
+}
+
+body {
+    width: 100vw;
+    height: 200vh;
+    margin: 0px;
+    background-color: #F8F2E3;
+    overflow-x: hidden;
+}
+
+ul {
+    padding: 0px;
+    margin: 0px;
+}
+
+h5, p {
+    margin: 0px;
+}
+
+.header {
+    width: 100%;
+    max-height: 130px;
+    display: flex;
+    justify-content: space-around;
+    position: sticky;
+    background-color: #F5F5F5;
+}
+
+.logo-container {
+    padding: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.logo {
+    width: 180px;
+    height: 90px;
+    background-color: #e4cc65;
+}
+
+.navigation-group {
+    min-width: 1200px;
+    padding: 20px;
+    padding-bottom: 10px;
+    display: flex;
+    flex-direction: column;
+}
+
+.navigation-group > * {
+    flex: 1;
+    display: flex;
+}
+
+.upper-navigation {
+    padding: 0px 20px;
+    display: flex;
+    border-bottom: 1px solid black;
+}
+
+.upper-navigation > * {
+    flex: 1;
+    display: flex;
+    align-items: center;
+}
+
+.phone-number,
+.open-hour {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.phone,
+.clock {
+    width: 20px;
+    height: 20px;
+}
+
+.lower-navigation {
+    padding: 10px 0px;
+    padding-bottom: 0px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.links {
+    display: flex;
+}
+
+.link {
+    padding-left: 25px;
+    padding-right: 25px;
+    display: flex;
+    align-items: center;
+    list-style: none;
+    font-size: 24px;
+    border-right: 1px solid black;
+}
+
+.link > a {
+    padding: 3px 5px;
+    text-decoration: none;
+    color: black;
+    transition: all 0.1s ease 0s;
+}
+
+.link > a:hover {
+    color: #F7DE75;
+}
+
+.book-service-button {
+    width: 250px;
+    position: relative;
+    font-size: 24px;
+    background-color: #F7DE75;
+    border: none;
+    border-radius: 8px;
+    transition: all 0.1s ease 0s;
+    cursor: pointer;
+}
+
+/* .book-service-button::before {
+    content: "";
+    height: 38px;
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    background-color: rgb(127, 20, 20);
+}
+
+.book-service-button:hover::before {
+    width: 100%;
+} */
+
+.book-service-button:hover {
+    color: white;
+    background-color: rgb(127, 20, 20);
+}
+
+.book-service-button:active {
+    opacity: 60%;
+}
+
+.services-dropdown {
+    width: 852px;
+    height: 300px;
+    padding: 20px;
+    display: none;
+    position: absolute;
+    top: 130px;
+    left: 326px;
+    background-color: #F2E5AB;
+    border-bottom-left-radius: 50px;
+    border-bottom-right-radius: 50px;
+}
+
+.services-link-container {
+    height: 100%;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    border: 3px solid white;
+    border-radius: 30px;
+}
+
+.services-links {
+    height: 80%;
+    display: flex;
+    flex-flow: column wrap;
+    gap: 10px;
+}
+
+.services-link {
+    text-decoration: none;
+    font-family: "Inter", "Segoe UI", sans-serif;
+    font-weight: 400;
+    font-size: 16px;
+    color: black;
+}
+
+.services-link:hover {
+    text-decoration: underline;
+    text-decoration-color: rgb(169, 21, 21);
+    color: rgb(169, 21, 21);
+}
+
+.is-visible-dropdown {
+    display: block;
+}
