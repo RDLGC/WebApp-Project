@@ -3,8 +3,8 @@ function showPassword() {
     const hidePasswordIcon = document.querySelector(".password-hidden");
     const passwordInput = document.querySelector(".password-input");
 
-    if (passwordInput.type === "password") {
-        passwordInput.type = "text";
+    if (passwordInput.getAttribute("type") === "password") {
+        passwordInput.setAttribute("type", "text");
         showPasswordIcon.style.display = "block";
         hidePasswordIcon.style.display = "none";
     } else {
